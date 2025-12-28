@@ -5,14 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Location;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LocationController extends Controller
 {
+    public function admin()
+    {
+        $employees = Location::with('employee')->orderBy('created_at', 'desc')->get();
+        return view('admin', compact('employees'));
+    }
+
     public function index()
     {
         $locations = Location::with('employee')->paginate(10);
+
         return response()->json($locations);
         // return view('locations.index', compact('locations'));
     }
@@ -20,6 +27,7 @@ class LocationController extends Controller
     public function employee()
     {
         $employees = Employee::with('locations')->paginate(10);
+
         return response()->json($employees);
         // return view('employees.index', compact('employees'));
     }
@@ -61,7 +69,7 @@ class LocationController extends Controller
     public function employeelocation(Request $request)
     {
         // $employee = Auth::user();
-       $employee = Employee::where('id',1)->first();
+        $employee = Employee::where('id', 1)->first();
         if (! $employee) {
             return response()->json([
                 'status' => false,
@@ -83,6 +91,7 @@ class LocationController extends Controller
             'lang' => $request->lang,
             'long' => $request->long,
         ]);
+
         return response()->json([
             'status' => true,
             'message' => 'Location saved successfully',

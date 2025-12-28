@@ -1,9 +1,8 @@
 # Base PHP image
 FROM php:8.2-fpm
 
-# System dependencies
+# Install dependencies + nginx
 RUN apt-get update && apt-get install -y \
-    libatomic1 \
     git \
     unzip \
     zip \
@@ -18,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 # Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Working directory
 WORKDIR /var/www/html
 
 # Copy project files
@@ -27,7 +26,7 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Configure nginx
+# Nginx config
 RUN rm /etc/nginx/sites-enabled/default
 COPY nginx.conf /etc/nginx/sites-available/default
 RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
@@ -35,5 +34,5 @@ RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 # Expose port 80
 EXPOSE 80
 
-# Start PHP-FPM and Nginx
+# Start nginx + php-fpm
 CMD service nginx start && php-fpm

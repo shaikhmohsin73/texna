@@ -12,9 +12,11 @@ class Employee extends Model
     protected $fillable = [
         'username',
         'mobile_no',
+        'email',
         'photo',
         'role',
         'status',
+        'approval_status',
     ];
 
     public function locations()

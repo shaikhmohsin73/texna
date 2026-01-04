@@ -141,8 +141,11 @@
         <nav class="sidebar">
             <div class="sidebar-header">TEXNA</div>
             <div class="menu">
+                <a href="/employees">👤 Employee</a>
                 <a href="/admin">📍 Locations</a>
-                <a href="/form">👤 Form</a>
+                <a href="/form">📝 Form</a>
+                <a href="/party_name">👤 Party Name</a>
+                <a href="/logout">🔒 Logout</a>
             </div>
         </nav>
         <div class="main">
@@ -150,16 +153,9 @@
                 <h3>Dashboard</h3>
                 <div style="color: var(--primary); font-weight: 600;">Admin Account</div>
             </header>
-
-
-
-
             @yield('content');
-
         </div>
-
     </div>
 </body>
-
 
 </html>

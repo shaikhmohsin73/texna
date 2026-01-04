@@ -9,11 +9,7 @@ class Location extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'e_id',
-        'lang',
-        'long',
-    ];
+    protected $fillable = ['e_id', 'lang', 'long'];
 
     public function employee()
     {

@@ -171,20 +171,7 @@
             text-align: center;
         }
     </style>
-
-
     <body>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <small>Total Staff</small>
-                <h2>24</h2>
-            </div>
-            <div class="stat-card">
-                <small>Active Tasks</small>
-                <h2>12</h2>
-            </div>
-        </div>
         <div class="content">
             <div class="card" id="employee">
                 <div style="display:flex; justify-content: space-between; align-items: center; gap:10px;">

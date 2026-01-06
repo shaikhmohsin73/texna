@@ -11,9 +11,7 @@ class ProductionCard extends Model
 
     protected $table = 'production_cards';
 
-    /**
-     * The attributes that are mass assignable.
-     */
+  
     protected $fillable = [
         'firm_name', 'or_date', 'own_name', 'mo_no', 'address', 'bill_no', 'loom_no',
         'chalan_no', 'del_date', 'jala_no', 'f_reed', 'line', 'pcs', 'pattern_no',

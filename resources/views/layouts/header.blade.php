@@ -8,6 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
         rel="stylesheet">
     <style>
+        .x-logo {
+            display: block;
+            margin: 20px auto;
+            width: 120px;
+            height: auto;
+        }
+
         :root {
             --primary: #4361ee;
             --secondary: #d63384;
@@ -139,11 +146,11 @@
 <body>
     <div class="wrapper">
         <nav class="sidebar">
-            <div class="sidebar-header">TEXNA</div>
+            <img src="https://texna.in/SVG/Texna%20Logo%20TM.svg" class="x-logo" alt="X">
             <div class="menu">
                 <a href="/employees">👤 Employee</a>
-                <a href="/admin">📍 Locations</a>
-                <a href="/form">📝 Form</a>
+                <a href="/location">📍 Locations</a>
+                <a href="/form_list">📝 Form</a>
                 <a href="/party_name">👤 Party Name</a>
                 <a href="/logout">🔒 Logout</a>
             </div>

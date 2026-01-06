@@ -1,6 +1,21 @@
 @extends('layouts.header')
 @section('content')
     <style>
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            color: #193eeb !important;
+        }
+
+
+        input,
+        textarea {
+            color: red;
+        }
+
         .form-row {
             display: flex;
             border-bottom: 1px solid #cbd5e1;
@@ -347,14 +362,10 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <form method="POST">
+    <form action="{{ route('production-cards.update', $data->id) }}" 
+      method="POST">
         @csrf
         @method('PUT')
-        <button type="button" onclick="generatePDF()"
-            style="background: #059669; color: white; padding: 12px 30px; border: none; border-radius: 6px; font-weight: 800; font-size: 14px; cursor: pointer; margin-right: 10px;">
-            <i class="fas fa-file-pdf"></i> GENERATE PDF (JS)
-        </button>
-        <script></script>
         <div class="card" style="max-width: 1100px; margin: auto; padding: 40px; border: 1px solid #e2e8f0;">
             <div class="bill-box">
                 <div class="form-row">
@@ -582,8 +593,10 @@
 
             <div class="bottom-section">
                 <div class="jala-khola">
-                    <div class="sub-title">OLD JALA KHOLA Team <input type="text" name="old_jala_khola_team"
-                            value="{{ $data->old_jala_khola_team }}"></div>
+                    <div class="sub-title" style="display: flex; align-items: center; gap: 10px;">OLD JALA KHOLA Team
+                        <input type="text" name="old_jala_khola_team" value="{{ $data->old_jala_khola_team }}"
+                            style="flex: 1; border: none; border-bottom: 1px solid #334155; background: transparent; height: 18px; font-size: 13px; font-weight: 700; color: #1e293b; outline: none; padding: 0 5px;">
+                    </div>
                     <div class="inner-row"><label>R.S. SET</label><input type="text" name="rs_set"
                             value="{{ $data->rs_set }}"></div>
                     <div class="inner-row"><label>RAJ</label><input type="text" name="raj_inner"
@@ -631,10 +644,6 @@
             </div>
         </div>
     </form>
-
-
-
-
 
     <script>
         const menuLinks = document.querySelectorAll('.menu a');

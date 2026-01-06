@@ -197,8 +197,7 @@
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                const employees = @json($employees);
-                console.log(employees);
+                const employees = @json($employees); console.log(employees);
                 let currentPage = 1;
                 const rowsPerPage = 10;
                 let filteredData = employees;

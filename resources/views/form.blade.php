@@ -1,6 +1,15 @@
 @extends('layouts.header')
 @section('content')
     <style>
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            color: #193eeb !important;
+        }
+
         .form-row {
             display: flex;
             border-bottom: 1px solid #cbd5e1;
@@ -343,657 +352,667 @@
             margin-bottom: 15px;
         }
     </style>
-    {{-- <form action="{{ route('projects.store') }}" method="POST"> --}}
-    @csrf
-    <div class="card" style="max-width: 1100px; margin: auto; padding: 40px; border: 1px solid #e2e8f0;">
-        <div class="bill-box">
-            <div class="form-row">
-                <div class="f-box flex-3">
-                    <label for="firmName">Firm Name</label>
-                    <input type="text" id="firm_name" name="firm_name">
-                </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <div class="f-box">
-                    <label for="orDate">OR. Date</label>
-                    <input type="date" id="or_date" name="or_date">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="f-box flex-3">
-                    <label for="ownName">Own Name</label>
-                    <input type="text" id="own_name" name="own_name">
-                </div>
-                <div class="f-box">
-                    <label for="moNo">MO. No</label>
-                    <input type="number" id="mo_no" name="mo_no">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="f-box">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="f-box">
-                    <label for="billNo">Bill No.</label>
-                    <input type="text" id="bill_no" name="bill_no">
-                </div>
-                <div class="f-box">
-                    <label for="loomNo">Loom No</label>
-                    <input type="text" id="loom_no" name="loom_no">
-                </div>
-                <div class="f-box">
-                    <label for="chalanNo">Chalan No</label>
-                    <input type="text" id="chalan_no" name="chalan_no">
-                </div>
-                <div class="f-box">
-                    <label for="delDate">Del. Date</label>
-                    <input type="date" id="del_date" name="del_date">
-                </div>
-            </div>
+    <style>
+        .dori-row-container {
+            display: flex;
+            border: 2.5px solid #000;
+            background: #fff;
+            margin-bottom: 10px;
+            min-height: 70px;
+        }
 
-        </div>
-        <div style="margin-top: 20px;">
-            <div class="bill-box">
-                <div class="form-row" style="border-top: 1px solid #cbd5e1;">
-                    <div class="f-box">
-                        <label for="jalaNo">Jala No</label>
-                        <input type="text" id="jala_no" name="jala_no">
-                    </div>
-                    <div class="f-box">
-                        <label for="fReed">F.Reed</label>
-                        <input type="text" id="f_reed" name="f_reed">
-                    </div>
-                    <div class="f-box">
-                        <label for="line">Line</label>
-                        <input type="text" id="line" name="line">
-                    </div>
-                    <div class="f-box">
-                        <label for="pcs">PCS</label>
-                        <input type="text" id="pcs" name="pcs">
-                    </div>
-                </div>
+        .dori-row-item {
+            flex: 1;
+            border-right: 2px solid #000;
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-                <div class="form-row">
-                    <div class="f-box">
-                        <label for="pattern_no">Pattern NO</label>
-                        <input type="text" id="pattern_no" name="pattern_no">
-                    </div>
-                     <div class="f-box">
-                        <label for="pattern_no">Pattern File</label>
-                        <input type="File" id="pattern_File" name="pattern_File">
-                    </div>
-                    <div class="f-box">
-                        <label for="bharai">Bharai</label>
-                        <input type="text" id="bharai" name="bharai">
-                    </div>
-                    <div class="f-box">
-                        <label for="pana">Pana</label>
-                        <input type="text" id="pana" name="pana">
-                    </div>
-                    <div class="f-box">
-                        <label for="tTar">T.Tar</label>
-                        <input type="text" id="t_tar" name="t_tar" readonly>
-                    </div>
-                </div>
-            </div>
+        .dori-row-item:last-child {
+            border-right: none;
+        }
 
-            <div class="bill-box">
-                <div class="form-row">
-                    <div class="f-box">
-                        <label for="uFrame">U.Frame</label>
-                        <input type="text" id="u_frame" name="u_frame">
-                    </div>
-                    <div class="f-box">
-                        <label for="size">Size</label>
-                        <input type="text" id="size" name="size">
-                    </div>
-                    <div class="f-box">
-                        <label for="lFrame">L.Frame</label>
-                        <input type="text" id="l_frame" name="l_frame">
-                    </div>
-                    <div class="f-box">
-                        <label for="kaski">Kaski</label>
-                        <input type="text" id="kaski" name="kaski">
-                    </div>
-                </div>
+        .dori-row-item label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            color: #000;
+        }
 
-                <div class="form-row">
-                    <div class="f-box">
-                        <label for="uBelt">U.Belt</label>
-                        <input type="text" id="u_belt" name="u_belt">
-                    </div>
-                    <div class="f-box">
-                        <label for="lBelt">L.Belt</label>
-                        <input type="text" id="l_belt" name="l_belt">
-                    </div>
-                    <div class="f-box">
-                        <label for="labour">Labour</label>
-                        <input type="text" id="labour" name="labour">
-                    </div>
-                    <div class="f-box">
-                        <label for="mcName">M/C Name</label>
-                        <input type="text" id="mc_name" name="mc_name">
-                    </div>
-                </div>
-            </div>
-
-            <div class="bill-box">
-                <div class="form-row">
-                    <div class="f-box">
-                        <label for="spring">Spring</label>
-                        <input type="text" id="spring" name="spring">
-                    </div>
-                    <div class="f-box">
-                        <label for="raj">Raj</label>
-                        <input type="text" id="raj" name="raj">
-                    </div>
-                    <div class="f-box">
-                        <label for="patti">Patti</label>
-                        <input type="text" id="patti" name="patti">
-                    </div>
-                    <div class="f-box">
-                        <label for="legpin">Legpin</label>
-                        <input type="text" id="legpin" name="legpin">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="f-box">
-                        <label for="tube">Tube</label>
-                        <input type="text" id="tube" name="tube">
-                    </div>
-                    <div class="f-box">
-                        <label for="totalPcs">To.Pcs</label>
-                        <input type="text" id="total_pcs" name="total_pcs">
-                    </div>
-                    <div class="f-box flex-2">
-                        <label for="doriType">Dori Type</label>
-                        <input type="text" id="dori_type" name="dori_type">
-                    </div>
-                    <div class="f-box">
-                        <label for="doriCutPerson">Dori Cut person</label>
-                        <input type="text" id="dori_cut_person" name="dori_cut_person">
-                    </div>
-                    <div class="f-box">
-                        <label for="doriKg">Dori Kg</label>
-                        <input type="text" id="dori_kg" name="dori_kg">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <style>
-            .dori-row-container {
-                display: flex;
-                border: 2.5px solid #000;
-                background: #fff;
-                margin-bottom: 10px;
-                min-height: 70px;
-            }
-
-            .dori-row-item {
-                flex: 1;
-                border-right: 2px solid #000;
-                padding: 6px 10px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .dori-row-item:last-child {
-                border-right: none;
-            }
-
-            .dori-row-item label {
-                font-size: 10px;
-                font-weight: 800;
-                text-transform: uppercase;
-                margin-bottom: 2px;
-                color: #000;
-            }
-
-            .dori-row-item select,
-            .dori-row-item input {
-                border: none;
-                outline: none;
-                font-size: 14px;
-                font-weight: 700;
-                background: transparent;
-                width: 100%;
-                border-bottom: 1px dashed #ccc;
-            }
-        </style>
-        <div class="card" style="max-width: 1100px; margin: auto; padding: 30px; border: 1px solid #e2e8f0;">
-            <div class="dori-row-container">
-                <div class="dori-row-item">
-                    <label>Dori Type</label>
-                    <select name="dori_type_dropdown" id="dori_type_dropdown">
-                        <option value="">Select</option>
-                        <option value="jaadi">Jaadi</option>
-                        <option value="patli">Patli</option>
-                    </select>
-                </div>
-                <div class="dori-row-item">
-                    <label>METER'S</label>
-                    <input type="text" name="meter" id="meter" readonly>
-                </div>
-
-                <div class="dori-row-item">
-                    <label>BR TAR</label>
-                    <input type="text" name="br_tar" id="br_tar" readonly>
-                </div>
-                <div class="dori-row-item">
-                    <label>TAR</label>
-                    <input type="text" name="new_tar" id="new_tar" readonly>
-                </div>
-                <div class="dori-row-item">
-                    <label>TOTAL TAR</label>
-                    <input type="text" name="total_tar_new" id="total_tar_new" readonly>
-                </div>
-                <div class="dori-row-item">
-                    <label>COLOUR-1 &nbsp;KG</label>
-                    <input type="text" name="kg_1" id="kg_1">
-                </div>
-                <div class="dori-row-item">
-                    <label>COLOUR-2&nbsp; KG</label>
-                    <input type="text" name="kg_2" id="kg_2">
-                </div>
-                <div class="dori-row-item">
-                    <label>Total KG</label>
-                    <input type="text" name="total_kg" id="total_kg">
-                </div>
-            </div>
-            <div class="prod-grid">
-                <div class="left-table">
-                    <div class="grid-header">
-                        <div class="w-gathi" style="padding:10px;">BORDER GATHI</div>
-                        <div class="w-tar" style="padding:10px;">BORDER TAR</div>
-                        <div class="w-total-tar" style="padding:10px;">TO TAR</div>
-                        <div class="w-total-tar" style="padding:10px;">GATHI TYPE</div>
-                        <div style="flex:1; padding:10px;">HEIGHT</div>
-                        <div style="flex:1; padding:10px;">TAR QTY</div>
-                        <div style="flex:1; padding:10px;">Colour-1</div>
-                        <div style="flex:1; padding:10px;">Colour-2</div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="cell w-gathi">
-                            <input type="text" value="BORDER" readonly id="border_val">
+        .dori-row-item select,
+        .dori-row-item input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            font-weight: 700;
+            background: transparent;
+            width: 100%;
+            border-bottom: 1px dashed #ccc;
+        }
+    </style>
+    <form action="{{ route('projects.store') }}" method="POST">
+        @csrf
+        <div class="card" style="max-width: 1100px; margin: auto; padding: 40px; border: 1px solid #e2e8f0;">
+            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->id != 2)
+                <div class="bill-box">
+                    <div class="form-row">
+                        <div class="f-box flex-3">
+                            <label for="firmName">Firm Name</label>
+                            <input type="text" id="firm_name" name="firm_name">
                         </div>
-                        <div class="cell w-tar">
-                            <input type="text" id="tar_1" name="gathi_items[0][border_tar]">
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                        </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <input type="text" id="gathi_a_1" name="gathi_items[0][gathi_types_a]">
-                                </div>
-                                <div class="math-line">
-                                    <input type="text" id="gathi_b_2" name="gathi_items[0][gathi_types_b]">
-                                </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <span class="symbol">*</span>
-                                    <input type="text" id="mul1_a_1" name="gathi_items[0][gathi_types_a]">
-                                </div>
-                                <div class="math-line">
-                                    <span class="symbol">*</span>
-                                    <input type="text" id="mul1_b_1" name="gathi_items[0][gathi_types_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-math" style="padding:0; border-right:none;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <span class="symbol">=</span>
-                                    <input type="text" id="eq1_a_1" name="gathi_items[0][tar_qty_a]">
-                                </div>
-                                <div class="math-line">
-                                    <span class="symbol">=</span>
-                                    <input type="text" id="eq1_b_1" name="gathi_items[0][tar_qty_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                        @endif
+                        <div class="f-box">
+                            <label for="orDate">OR. Date</label>
+                            <input type="date" id="or_date" name="or_date">
                         </div>
                     </div>
-                    <div class="grid-row">
-                        <div class="cell w-gathi">
-                            <input type="text" value="Gathi 1" readonly>
+                    <div class="form-row">
+                        <div class="f-box flex-3">
+                            <label for="ownName">Own Name</label>
+                            <input type="text" id="own_name" name="own_name">
                         </div>
-                        <div class="cell w-tar">
-                            <input type="text" id="tar_2" name="gathi_items[1][border_tar]">
+                        <div class="f-box">
+                            <label for="moNo">MO. No</label>
+                            <input type="number" id="mo_no" name="mo_no">
                         </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_2" name="gathi_items[1][to_tar]">
+                    </div>
+                    <div class="form-row">
+                        <div class="f-box">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address">
                         </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <input type="text" id="gathi_a_1_2" name="gathi_items[1][gathi_types_a]">
-                                </div>
-                                <div class="math-line">
-                                    <input type="text" id="gathi_b_1_2" name="gathi_items[1][gathi_types_b]">
-                                </div>
-                            </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="f-box">
+                            <label for="billNo">Bill No.</label>
+                            <input type="text" id="bill_no" name="bill_no">
                         </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line"><span class="symbol">*</span>
-                                    <input type="text" id="mul1_a_1_2" name="gathi_items[1][gathi_types_a]">
-                                </div>
-                                <div class="math-line"><span class="symbol">*</span>
-                                    <input type="text" id="mul1_b_1_2" name="gathi_items[1][gathi_types_b]">
-                                </div>
-                            </div>
+                        <div class="f-box">
+                            <label for="loomNo">Loom No</label>
+                            <input type="text" id="loom_no" name="loom_no">
                         </div>
-                        <div class="cell w-math" style="padding:0; border-right:none;">
-                            <div class="math-box">
-                                <div class="math-line"><span class="symbol">=</span>
-                                    <input type="text" id="eq1_a_2" name="gathi_items[1][tar_qty_a]">
-                                </div>
-                                <div class="math-line"><span class="symbol">=</span>
-                                    <input type="text" id="eq1_b_2" name="gathi_items[1][tar_qty_b]">
-                                </div>
-                            </div>
+                        <div class="f-box">
+                            <label for="chalanNo">Chalan No</label>
+                            <input type="text" id="chalan_no" name="chalan_no">
                         </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                        <div class="f-box">
+                            <label for="delDate">Del. Date</label>
+                            <input type="date" id="del_date" name="del_date">
                         </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                    </div>
+                </div>
+            @endif
+            <div style="margin-top: 20px;">
+                <div class="bill-box">
+                    <div class="form-row" style="border-top: 1px solid #cbd5e1;">
+                        <div class="f-box">
+                            <label for="jalaNo">Jala No</label>
+                            <input type="text" id="jala_no" name="jala_no">
+                        </div>
+                        <div class="f-box">
+                            <label for="fReed">F.Reed</label>
+                            <input type="text" id="f_reed" name="f_reed">
+                        </div>
+                        <div class="f-box">
+                            <label for="line">Line</label>
+                            <input type="text" id="line" name="line">
+                        </div>
+                        <div class="f-box">
+                            <label for="pcs">PCS</label>
+                            <input type="text" id="pcs" name="pcs">
                         </div>
                     </div>
 
-                    <div class="grid-row">
-                        <div class="cell w-gathi">
-                            <input type="text" value="Gathi 2" readonly>
+                    <div class="form-row">
+                        <div class="f-box">
+                            <label for="pattern_no">Pattern NO</label>
+                            <input type="text" id="pattern_no" name="pattern_no">
                         </div>
-                        <div class="cell w-tar">
-                            <input type="text" id="tar_3" name="gathi_items[2][border_tar]">
+                        {{-- <div class="f-box">
+                            <label for="pattern_no">Pattern File</label>
+                            <input type="File" id="pattern_File" name="pattern_File">
+                        </div> --}}
+                        <div class="f-box">
+                            <label for="bharai">Bharai</label>
+                            <input type="text" id="bharai" name="bharai">
                         </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_3" name="gathi_items[2][to_tar]">
+                        <div class="f-box">
+                            <label for="pana">Pana</label>
+                            <input type="text" id="pana" name="pana">
                         </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <input type="text" id="gathi_a_1_3" name="gathi_items[2][gathi_types_a]">
-                                </div>
-                                <div class="math-line">
-                                    <input type="text" id="gathi_b_1_3" name="gathi_items[2][gathi_types_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <span class="symbol">*</span>
-                                    <input type="text" id="mul1_a_3_3" name="gathi_items[2][gathi_types_a]">
-                                </div>
-                                <div class="math-line">
-                                    <span class="symbol">*</span>
-                                    <input type="text" id="mul1_b_3_3" name="gathi_items[2][gathi_types_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-math" style="padding:0; border-right:none;">
-                            <div class="math-box">
-                                <div class="math-line"><span class="symbol">=</span>
-                                    <input type="text" id="eq1_a_3" name="gathi_items[2][tar_qty_a]">
-                                </div>
-                                <div class="math-line"><span class="symbol">=</span>
-                                    <input type="text" id="eq1_b_3" name="gathi_items[2][tar_qty_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                        </div>
-                    </div>
-
-                    <div class="grid-row">
-                        <div class="cell w-gathi">
-                            <input type="text" value="Gathi 3" readonly>
-                        </div>
-                        <div class="cell w-tar">
-                            <input type="text" id="tar_4" name="gathi_items[3][border_tar]">
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_4" name="gathi_items[3][to_tar]">
-                        </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <input type="text" id="gathi_a_1_4" name="gathi_items[3][gathi_types_a]">
-                                </div>
-                                <div class="math-line">
-                                    <input type="text" id="gathi_b_1_4" name="gathi_items[3][gathi_types_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line"><span class="symbol">*</span>
-                                    <input type="text" id="mul1_a_4_4" name="gathi_items[3][gathi_types_a]">
-                                </div>
-                                <div class="math-line"><span class="symbol">*</span>
-                                    <input type="text" id="mul1_b_4_4" name="gathi_items[3][gathi_types_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-math" style="padding:0; border-right:none;">
-                            <div class="math-box">
-                                <div class="math-line"><span class="symbol">=</span>
-                                    <input type="text" id="eq1_a_4" name="gathi_items[3][tar_qty_a]">
-                                </div>
-                                <div class="math-line"><span class="symbol">=</span>
-                                    <input type="text" id="eq1_b_4" name="gathi_items[3][tar_qty_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                        </div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="cell w-gathi">
-                            <input type="text" value="Gathi 4" readonly>
-                        </div>
-                        <div class="cell w-tar">
-                            <input type="text" id="tar_5" name="gathi_items[4][border_tar]">
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_5" name="gathi_items[4][to_tar]">
-                        </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <input type="text" id="gathi_a_1_5" name="gathi_items[4][gathi_types_a]">
-                                </div>
-                                <div class="math-line">
-                                    <input type="text" id="gathi_b_1_5" name="gathi_items[4][gathi_types_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-math" style="padding:0;">
-                            <div class="math-box">
-                                <div class="math-line">
-                                    <span class="symbol">*</span>
-                                    <input type="text" id="mul1_a_5_5" name="gathi_items[4][gathi_types_a]">
-                                </div>
-                                <div class="math-line">
-                                    <span class="symbol">*</span>
-                                    <input type="text" id="mul1_b_5_5" name="gathi_items[4][gathi_types_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-math" style="padding:0; border-right:none;">
-                            <div class="math-box">
-                                <div class="math-line"><span class="symbol">=</span>
-                                    <input type="text" id="eq1_a_5" name="gathi_items[4][tar_qty_a]">
-                                </div>
-                                <div class="math-line"><span class="symbol">=</span>
-                                    <input type="text" id="eq1_b_5" name="gathi_items[4][tar_qty_b]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                        </div>
-                        <div class="cell w-total-tar">
-                            <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                        </div>
-                    </div>
-                    <div class="grid-row" style="height: 40px; background: #f8fafc;">
-                        <div style="flex: 4.2; text-align: right; padding: 10px; font-weight: 800;">
-                            TOTAL
-                        </div>
-                        <div class="cell" style="flex: 1; border-left: 1.5px solid #000;">
-                            <span class="symbol">=</span>
-                            <input type="text" id="grand_total" name="grand_total">
+                        <div class="f-box">
+                            <label for="tTar">T.Tar</label>
+                            <input type="text" id="t_tar" name="t_tar" readonly>
                         </div>
                     </div>
                 </div>
-                <div class="right-team">
-                    <div class="grid-header">
-                        <div style="flex:1; padding:10px; border-left:1px solid #000;">
-                            PERSONNEL / TEAM
+
+                <div class="bill-box">
+                    <div class="form-row">
+                        <div class="f-box">
+                            <label for="uFrame">U.Frame</label>
+                            <input type="text" id="u_frame" name="u_frame">
+                        </div>
+                        <div class="f-box">
+                            <label for="size">Size</label>
+                            <input type="text" id="size" name="size">
+                        </div>
+                        <div class="f-box">
+                            <label for="lFrame">L.Frame</label>
+                            <input type="text" id="l_frame" name="l_frame">
+                        </div>
+                        <div class="f-box">
+                            <label for="kaski">Kaski</label>
+                            <input type="text" id="kaski" name="kaski">
                         </div>
                     </div>
-                    <div class="team-box">
-                        <label for="jalaBharaiTeam">JALA BHARAI TEAM</label>
-                        <input type="text" id="jala_bharai_team" name="jala_bharai_team">
+
+                    <div class="form-row">
+                        <div class="f-box">
+                            <label for="uBelt">U.Belt</label>
+                            <input type="text" id="u_belt" name="u_belt">
+                        </div>
+                        <div class="f-box">
+                            <label for="lBelt">L.Belt</label>
+                            <input type="text" id="l_belt" name="l_belt">
+                        </div>
+                        <div class="f-box">
+                            <label for="labour">Labour</label>
+                            <input type="text" id="labour" name="labour">
+                        </div>
+                        <div class="f-box">
+                            <label for="mcName">M/C Name</label>
+                            <input type="text" id="mc_name" name="mc_name">
+                        </div>
                     </div>
-                    <div class="team-box">
-                        <label for="gButtonTeam">G/B BUTTON TEAM</label>
-                        <input type="text" id="g_button_team" name="g_button_team">
+                </div>
+
+                <div class="bill-box">
+                    <div class="form-row">
+                        <div class="f-box">
+                            <label for="spring">Spring</label>
+                            <input type="text" id="spring" name="spring">
+                        </div>
+                        <div class="f-box">
+                            <label for="raj">Raj</label>
+                            <input type="text" id="raj" name="raj">
+                        </div>
+                        <div class="f-box">
+                            <label for="patti">Patti</label>
+                            <input type="text" id="patti" name="patti">
+                        </div>
+                        <div class="f-box">
+                            <label for="legpin">Legpin</label>
+                            <input type="text" id="legpin" name="legpin">
+                        </div>
                     </div>
-                    <div class="team-box">
-                        <label for="gathiPerson">GATHI PERSON | NO OF GAT</label>
-                        <input type="text" id="gathi_person" name="gathi_person">
+
+                    <div class="form-row">
+                        <div class="f-box">
+                            <label for="tube">Tube</label>
+                            <input type="text" id="tube" name="tube">
+                        </div>
+                        <div class="f-box">
+                            <label for="totalPcs">To.Pcs</label>
+                            <input type="text" id="total_pcs" name="total_pcs">
+                        </div>
+                        <div class="f-box flex-2">
+                            <label for="doriType">Dori Type</label>
+                            <input type="text" id="dori_type" name="dori_type">
+                        </div>
+                        <div class="f-box">
+                            <label for="doriCutPerson">Dori Cut person</label>
+                            <input type="text" id="dori_cut_person" name="dori_cut_person">
+                        </div>
+                        <div class="f-box">
+                            <label for="doriKg">Dori Kg</label>
+                            <input type="text" id="dori_kg" name="dori_kg">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="bottom-section">
-            <div class="jala-khola">
-                <div class="sub-title" style="display: flex; align-items: center; gap: 10px;">
-                    OLD JALA KHOLA Team
-                    <input type="text" id="old_jala_khola_team" name="old_jala_khola_team"
-                        style="flex: 1; border: none; border-bottom: 1px solid #334155; background: transparent; height: 18px; font-size: 13px; font-weight: 700; color: #1e293b; outline: none; padding: 0 5px;">
-                </div>
-                <div class="inner-row">
-                    <label for="rsSet">R.S. SET</label>
-                    <input type="text" id="rs_set" name="rs_set">
-                </div>
-                <div class="inner-row">
-                    <label for="rajInner">RAJ</label>
-                    <input type="text" id="raj_inner" name="raj_inner">
-                </div>
-                <div class="inner-row">
-                    <label for="springInner">SPRING</label>
-                    <input type="text" id="springInner" name="springInner">
-                </div>
-                <div class="inner-row">
-                    <label for="tubeInner">TUBE</label>
-                    <input type="text" id="tubeInner" name="tubeInner">
-                </div>
-                <div class="inner-row" style="background: #fdfdfd;">
-                    <label for="kacchaPakkaTeam">Kaccha/Pakka Team</label>
-                    <input type="text" id="kaccha_pakka_team" name="kaccha_pakka_team">
-                    <div
-                        style="width: 180px; border-left: 1px solid #cbd5e1; padding-left: 10px; display: flex; align-items: center; gap: 5px;">
-                        <label for="kacchaPakkaDate" style="width: auto; margin: 0;">Date:</label>
-                        <input type="date" id="kaccha_pakka_date" name="kaccha_pakka_date"
-                            style="width: 130px; border-bottom: 1px dashed #ccc;">
+            <div class="card" style="max-width: 1100px; margin: auto; padding: 30px; border: 1px solid #e2e8f0;">
+                <div class="dori-row-container">
+                    <div class="dori-row-item">
+                        <label>Dori Type</label>
+                        <select name="dori_type_dropdown" id="dori_type_dropdown">
+                            <option value="">Select</option>
+                            <option value="jaadi">Jaadi</option>
+                            <option value="patli">Patli</option>
+                        </select>
+                    </div>
+                    <div class="dori-row-item">
+                        <label>METER'S</label>
+                        <input type="text" name="meter" id="meter" readonly>
+                    </div>
+
+                    <div class="dori-row-item">
+                        <label>BR TAR</label>
+                        <input type="text" name="br_tar" id="br_tar" readonly>
+                    </div>
+                    <div class="dori-row-item">
+                        <label>TAR</label>
+                        <input type="text" name="new_tar" id="new_tar" readonly>
+                    </div>
+                    <div class="dori-row-item">
+                        <label>TOTAL TAR</label>
+                        <input type="text" name="total_tar_new" id="total_tar_new" readonly>
+                    </div>
+                    <div class="dori-row-item">
+                        <label>COLOUR-1 &nbsp;KG</label>
+                        <input type="text" name="kg_1" id="kg_1">
+                    </div>
+                    <div class="dori-row-item">
+                        <label>COLOUR-2&nbsp; KG</label>
+                        <input type="text" name="kg_2" id="kg_2">
+                    </div>
+                    <div class="dori-row-item">
+                        <label>Total KG</label>
+                        <input type="text" name="total_kg" id="total_kg">
                     </div>
                 </div>
+                <div class="prod-grid">
+                    <div class="left-table">
+                        <div class="grid-header">
+                            <div class="w-gathi" style="padding:10px;">BORDER GATHI</div>
+                            <div class="w-tar" style="padding:10px;">BORDER TAR</div>
+                            <div class="w-total-tar" style="padding:10px;">TO TAR</div>
+                            <div class="w-total-tar" style="padding:10px;">GATHI TYPE</div>
+                            <div style="flex:1; padding:10px;">HEIGHT</div>
+                            <div style="flex:1; padding:10px;">TAR QTY</div>
+                            <div style="flex:1; padding:10px;">Colour-1</div>
+                            <div style="flex:1; padding:10px;">Colour-2</div>
+                        </div>
+                        <div class="grid-row">
+                            <div class="cell w-gathi">
+                                <input type="text" value="BORDER" readonly id="border_val">
+                            </div>
+                            <div class="cell w-tar">
+                                <input type="text" id="tar_1" name="gathi_items[0][border_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_a_1" name="gathi_items[0][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_b_2" name="gathi_items[0][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <span class="symbol">*</span>
+                                        <input type="text" id="mul1_a_1" name="gathi_items[0][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <span class="symbol">*</span>
+                                        <input type="text" id="mul1_b_1" name="gathi_items[0][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0; border-right:none;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <span class="symbol">=</span>
+                                        <input type="text" id="eq1_a_1" name="gathi_items[0][tar_qty_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <span class="symbol">=</span>
+                                        <input type="text" id="eq1_b_1" name="gathi_items[0][tar_qty_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                        </div>
+                        <div class="grid-row">
+                            <div class="cell w-gathi">
+                                <input type="text" value="Gathi 1" readonly>
+                            </div>
+                            <div class="cell w-tar">
+                                <input type="text" id="tar_2" name="gathi_items[1][border_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_2" name="gathi_items[1][to_tar]">
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_a_1_2" name="gathi_items[1][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_b_1_2" name="gathi_items[1][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line"><span class="symbol">*</span>
+                                        <input type="text" id="mul1_a_1_2" name="gathi_items[1][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line"><span class="symbol">*</span>
+                                        <input type="text" id="mul1_b_1_2" name="gathi_items[1][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0; border-right:none;">
+                                <div class="math-box">
+                                    <div class="math-line"><span class="symbol">=</span>
+                                        <input type="text" id="eq1_a_2" name="gathi_items[1][tar_qty_a]">
+                                    </div>
+                                    <div class="math-line"><span class="symbol">=</span>
+                                        <input type="text" id="eq1_b_2" name="gathi_items[1][tar_qty_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                        </div>
 
-            </div>
-            <div class="guide-board">
-                <div class="sub-title">Guide Board / Texna</div>
-                <div class="inner-row" style="height: 60px;">
-                    <label for="buttonTexna">BUTTON TEXNA</label>
-                    <input type="text" id="button_texna" name="button_texna">
+                        <div class="grid-row">
+                            <div class="cell w-gathi">
+                                <input type="text" value="Gathi 2" readonly>
+                            </div>
+                            <div class="cell w-tar">
+                                <input type="text" id="tar_3" name="gathi_items[2][border_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_3" name="gathi_items[2][to_tar]">
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_a_1_3" name="gathi_items[2][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_b_1_3" name="gathi_items[2][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <span class="symbol">*</span>
+                                        <input type="text" id="mul1_a_3_3" name="gathi_items[2][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <span class="symbol">*</span>
+                                        <input type="text" id="mul1_b_3_3" name="gathi_items[2][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0; border-right:none;">
+                                <div class="math-box">
+                                    <div class="math-line"><span class="symbol">=</span>
+                                        <input type="text" id="eq1_a_3" name="gathi_items[2][tar_qty_a]">
+                                    </div>
+                                    <div class="math-line"><span class="symbol">=</span>
+                                        <input type="text" id="eq1_b_3" name="gathi_items[2][tar_qty_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                        </div>
+
+                        <div class="grid-row">
+                            <div class="cell w-gathi">
+                                <input type="text" value="Gathi 3" readonly>
+                            </div>
+                            <div class="cell w-tar">
+                                <input type="text" id="tar_4" name="gathi_items[3][border_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_4" name="gathi_items[3][to_tar]">
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_a_1_4" name="gathi_items[3][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_b_1_4" name="gathi_items[3][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line"><span class="symbol">*</span>
+                                        <input type="text" id="mul1_a_4_4" name="gathi_items[3][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line"><span class="symbol">*</span>
+                                        <input type="text" id="mul1_b_4_4" name="gathi_items[3][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0; border-right:none;">
+                                <div class="math-box">
+                                    <div class="math-line"><span class="symbol">=</span>
+                                        <input type="text" id="eq1_a_4" name="gathi_items[3][tar_qty_a]">
+                                    </div>
+                                    <div class="math-line"><span class="symbol">=</span>
+                                        <input type="text" id="eq1_b_4" name="gathi_items[3][tar_qty_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                        </div>
+                        <div class="grid-row">
+                            <div class="cell w-gathi">
+                                <input type="text" value="Gathi 4" readonly>
+                            </div>
+                            <div class="cell w-tar">
+                                <input type="text" id="tar_5" name="gathi_items[4][border_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_5" name="gathi_items[4][to_tar]">
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_a_1_5" name="gathi_items[4][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <input type="text" id="gathi_b_1_5" name="gathi_items[4][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line">
+                                        <span class="symbol">*</span>
+                                        <input type="text" id="mul1_a_5_5" name="gathi_items[4][gathi_types_a]">
+                                    </div>
+                                    <div class="math-line">
+                                        <span class="symbol">*</span>
+                                        <input type="text" id="mul1_b_5_5" name="gathi_items[4][gathi_types_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0; border-right:none;">
+                                <div class="math-box">
+                                    <div class="math-line"><span class="symbol">=</span>
+                                        <input type="text" id="eq1_a_5" name="gathi_items[4][tar_qty_a]">
+                                    </div>
+                                    <div class="math-line"><span class="symbol">=</span>
+                                        <input type="text" id="eq1_b_5" name="gathi_items[4][tar_qty_b]">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                            </div>
+                        </div>
+                        <div class="grid-row" style="height: 40px; background: #f8fafc;">
+                            <div style="flex: 4.2; text-align: right; padding: 10px; font-weight: 800;">
+                                TOTAL
+                            </div>
+                            <div class="cell" style="flex: 1; border-left: 1.5px solid #000;">
+                                <span class="symbol">=</span>
+                                <input type="text" id="grand_total" name="grand_total">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-team">
+                        <div class="grid-header">
+                            <div style="flex:1; padding:10px; border-left:1px solid #000;">
+                                PERSONNEL / TEAM
+                            </div>
+                        </div>
+                        <div class="team-box">
+                            <label for="jalaBharaiTeam">JALA BHARAI TEAM</label>
+                            <input type="text" id="jala_bharai_team" name="jala_bharai_team">
+                        </div>
+                        <div class="team-box">
+                            <label for="gButtonTeam">G/B BUTTON TEAM</label>
+                            <input type="text" id="g_button_team" name="g_button_team">
+                        </div>
+                        <div class="team-box">
+                            <label for="gathiPerson">GATHI PERSON | NO OF GAT</label>
+                            <input type="text" id="gathi_person" name="gathi_person">
+                        </div>
+                    </div>
                 </div>
-                <div class="inner-row" style="height: 80px; flex-direction: column; align-items: flex-start;">
-                    <label for="guideBoardTexna">GUIDE BOARD TEXNA</label>
-                    <textarea id="guide_board_texna" name="guide_board_texna"
-                        style="width: 100%; height: 100%; border: none; outline: none; resize: none; font-weight: 600; font-family: inherit; margin-top: 5px;">
+            </div>
+
+            <div class="bottom-section">
+                <div class="jala-khola">
+                    <div class="sub-title" style="display: flex; align-items: center; gap: 10px;">
+                        OLD JALA KHOLA Team
+                        <input type="text" id="old_jala_khola_team" name="old_jala_khola_team"
+                            style="flex: 1; border: none; border-bottom: 1px solid #334155; background: transparent; height: 18px; font-size: 13px; font-weight: 700; color: #1e293b; outline: none; padding: 0 5px;">
+                    </div>
+                    <div class="inner-row">
+                        <label for="rsSet">R.S. SET</label>
+                        <input type="text" id="rs_set" name="rs_set">
+                    </div>
+                    <div class="inner-row">
+                        <label for="rajInner">RAJ</label>
+                        <input type="text" id="raj_inner" name="raj_inner">
+                    </div>
+                    <div class="inner-row">
+                        <label for="springInner">SPRING</label>
+                        <input type="text" id="springInner" name="springInner">
+                    </div>
+                    <div class="inner-row">
+                        <label for="tubeInner">TUBE</label>
+                        <input type="text" id="tubeInner" name="tubeInner">
+                    </div>
+                    <div class="inner-row" style="background: #fdfdfd;">
+                        <label for="kacchaPakkaTeam">Kaccha/Pakka Team</label>
+                        <input type="text" id="kaccha_pakka_team" name="kaccha_pakka_team">
+                        <div
+                            style="width: 180px; border-left: 1px solid #cbd5e1; padding-left: 10px; display: flex; align-items: center; gap: 5px;">
+                            <label for="kacchaPakkaDate" style="width: auto; margin: 0;">Date:</label>
+                            <input type="date" id="kaccha_pakka_date" name="kaccha_pakka_date"
+                                style="width: 130px; border-bottom: 1px dashed #ccc;">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="guide-board">
+                    <div class="sub-title">Guide Board / Texna</div>
+                    <div class="inner-row" style="height: 60px;">
+                        <label for="buttonTexna">BUTTON TEXNA</label>
+                        <input type="text" id="button_texna" name="button_texna">
+                    </div>
+                    <div class="inner-row" style="height: 80px; flex-direction: column; align-items: flex-start;">
+                        <label for="guideBoardTexna">GUIDE BOARD TEXNA</label>
+                        <textarea id="guide_board_texna" name="guide_board_texna"
+                            style="width: 100%; height: 100%; border: none; outline: none; resize: none; font-weight: 600; font-family: inherit; margin-top: 5px;">
                     </textarea>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div style="margin-top: 20px; border: 1.5px solid #000; background: #fff;">
-            <div
-                style="background: #f1f5f9; padding: 5px 10px; font-size: 11px; font-weight: 800; border-bottom: 1px solid #000; text-transform: uppercase;">
-                Remark / Special Instructions
-            </div>
-            <div style="padding: 10px;">
-                <textarea name="remark" id="remark" placeholder="Yahan apna remark likhein..."
-                    style="width: 100%; min-height: 80px; border: none; outline: none; resize: vertical; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; color: #1e293b;">
+            <div style="margin-top: 20px; border: 1.5px solid #000; background: #fff;">
+                <div
+                    style="background: #f1f5f9; padding: 5px 10px; font-size: 11px; font-weight: 800; border-bottom: 1px solid #000; text-transform: uppercase;">
+                    Remark / Special Instructions
+                </div>
+                <div style="padding: 10px;">
+                    <textarea name="remark" id="remark" placeholder="Yahan apna remark likhein..."
+                        style="width: 100%; min-height: 80px; border: none; outline: none; resize: vertical; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; color: #1e293b;">
                 </textarea>
+                </div>
             </div>
-        </div>
-        <div class="checklist-wrapper">
-            <label class="check-box-item" for="fiber">
-                <input type="checkbox" id="fiber" name="checklist"> FIBER
-            </label>
-            <label class="check-box-item" for="dori-cut">
-                <input type="checkbox" id="dori-cut" name="checklist"> DORI CUT
-            </label>
-            <label class="check-box-item" for="gathi">
-                <input type="checkbox" id="gathi" name="checklist"> GATHI
-            </label>
-            <label class="check-box-item" for="jala-bharai">
-                <input type="checkbox" id="jala-bharai" name="checklist"> JALA BHARAI
-            </label>
-            <label class="check-box-item" for="rss">
-                <input type="checkbox" id="rss" name="checklist"> RSS
-            </label>
-            <label class="check-box-item" for="gb-btn">
-                <input type="checkbox" id="gb-btn" name="checklist"> GB & BTN
-            </label>
-            <label class="check-box-item" for="frame-set">
-                <input type="checkbox" id="frame-set" name="checklist"> FRAME SET + ACCESSORIES
-            </label>
-        </div>
-        <button type="button" id="calculateBtn">Calculate</button>
+            <div class="checklist-wrapper">
+                <label class="check-box-item">
+                    <input type="checkbox" name="checklist[]" value="FIBER"> FIBER
+                </label>
 
-        {{-- <div style="margin-top: 30px; text-align: right; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                <label class="check-box-item">
+                    <input type="checkbox" name="checklist[]" value="DORI CUT"> DORI CUT
+                </label>
+
+                <label class="check-box-item">
+                    <input type="checkbox" name="checklist[]" value="GATHI"> GATHI
+                </label>
+
+                <label class="check-box-item">
+                    <input type="checkbox" name="checklist[]" value="JALA BHARAI"> JALA BHARAI
+                </label>
+
+                <label class="check-box-item">
+                    <input type="checkbox" name="checklist[]" value="RSS"> RSS
+                </label>
+
+                <label class="check-box-item">
+                    <input type="checkbox" name="checklist[]" value="GB & BTN"> GB & BTN
+                </label>
+
+                <label class="check-box-item">
+                    <input type="checkbox" name="checklist[]" value="FRAME SET + ACCESSORIES">
+                    FRAME SET + ACCESSORIES
+                </label>
+            </div>
+
+            <button type="button" id="calculateBtn">Calculate</button>
+
+            <div style="margin-top: 30px; text-align: right; border-top: 1px solid #e2e8f0; padding-top: 20px;">
                 <button type="submit"
                     style="background: #2563eb; color: white; padding: 12px 30px; border: none; border-radius: 6px; font-weight: 800; font-size: 14px; cursor: pointer; transition: background 0.3s; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
                     <i class="fas fa-save"></i> SAVE DATA
                 </button>
-            </div> --}}
-    </div>
+            </div>
+        </div>
     </form>
     <script>
         const doriDropdown = document.getElementById('dori_type_dropdown');
@@ -1126,15 +1145,12 @@
             console.log("Result for Gathi B1: " + calculateColor(tar_5, totalTar_5, gathi_b_1_5));
         }
     </script>
-
     <script>
-        // Ye function ensure karega ki page poora load hone ke baad hi code chale
         window.onload = function() {
             const btn = document.getElementById('calculateBtn');
 
             if (btn) {
                 btn.addEventListener('click', function() {
-                    // 1. Inputs fetch karna
                     const elTar = document.getElementById('total_tar_new');
                     const elMeter = document.getElementById('meter');
                     const elGathiA = document.getElementById('mul1_a_1_2');
@@ -1144,8 +1160,6 @@
                         alert("Please check: Inputs missing on page!");
                         return;
                     }
-
-                    // 2. Har step ke alag variables (Breakup logic)
                     let valTotalTar = parseFloat(elTar.value) || 0;
                     let valMeter = parseFloat(elMeter.value) || 0;
                     let valGathiA = parseFloat(elGathiA.value) || 0;
@@ -1154,18 +1168,14 @@
                     const divider = 39.37;
                     const factor1 = 0.33;
                     const factor2 = 0.66;
-                    let a_step1 = valTotalTar * valGathiA; // Multiply
-                    let a_step2 = a_step1 / divider; // Divide
-                    let a_step3 = a_step2 * factor1; // Factor
-                    let a_final = a_step3 / valMeter; // Final Divide by Meter
-
-                    // 4. COLOR B Calculation (Target: 39.33)
+                    let a_step1 = valTotalTar * valGathiA;
+                    let a_step2 = a_step1 / divider;
+                    let a_step3 = a_step2 * factor1;
+                    let a_final = a_step3 / valMeter;
                     let b_step1 = valTotalTar * valGathiB;
                     let b_step2 = b_step1 / divider;
                     let b_step3 = b_step2 * factor2;
                     let b_final = b_step3 / valMeter;
-
-                    // 5. Output in Console
                     console.clear();
                     console.log("Values used:", {
                         Tar: valTotalTar,
@@ -1179,14 +1189,10 @@
                     if (inputKg1) {
                         inputKg1.value = a_final.toFixed(2);
                     }
-
-                    // Color B ki value print karein
                     const inputKg2 = document.getElementById('kg_2');
                     if (inputKg2) {
                         inputKg2.value = b_final.toFixed(2);
                     }
-
-                    // Dono ka TOTAL (+) karke print karein
                     const inputTotalKg = document.getElementById('total_kg');
                     if (inputTotalKg) {
                         let combinedTotal = a_final + b_final;
@@ -1198,8 +1204,4 @@
             }
         };
     </script>
-
-
-
-
 @endsection

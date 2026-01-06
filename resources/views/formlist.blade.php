@@ -1,27 +1,131 @@
 @extends('layouts.header')
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        .add-btn {
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            font-weight: 600;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #fff;
+        }
+
+        .status-side {
+            background-color: #dc3545;
+        }
+
+        .status-running {
+            background-color: #0d6efd;
+        }
+
+        .status-complete {
+            background-color: #198754;
+        }
+
+        .action-icons a {
+            margin-right: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-edit {
+            color: #0d6efd;
+            background-color: #e7f1ff;
+        }
+
+        .action-print {
+            color: #000;
+            background-color: #f0f0f0;
+        }
+
+        .action-pdf {
+            color: #dc3545;
+            background-color: #fcebea;
+        }
+
+        .action-icons a:hover {
+            filter: brightness(85%);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .action-icons a {
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+    </style>
     <div class="content">
         <div class="card" id="employee">
             <div style="display:flex; justify-content: space-between; align-items: center; gap:10px;">
-                <h4>FOrm Order</h4>
-                <input type="text" class="search-box" id="searchInput" placeholder="Search name, phone, status...">
+                <h4>Form Order</h4>
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <input type="text" class="search-box" id="searchInput" placeholder="Search name, phone, status...">
+
+                    <a href="{{ route('form_create') }}" class="add-btn">
+                        <i class="fa-solid fa-plus"></i> Add New
+                    </a>
+                </div>
             </div>
+
             <table id="employeeTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Form N</th>
                         <th>Jala type</th>
                         <th>Party Name</th>
                         <th>Number</th>
-                        <th>Address-1</th>
-                        <th>Address-2</th>
-                        <th>Address-3</th>
+                        <th>Address</th>
                         <th>Reed</th>
                         <th>tar</th>
                         <th>No Jala</th>
                         <th>Del date</th>
-
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
@@ -31,103 +135,88 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
     <script>
         $(document).ready(function() {
+            fetchForms();
 
-            // Dummy data
-            const employees = [{
-                    id: 1,
-                    form_no: "F-101",
-                    jala_type: "Type A",
-                    party_name: "Ramesh",
-                    number: "9876543210",
-                    address1: "Chennai",
-                    address2: "TN",
-                    address3: "India",
-                    reed: "Yes",
-                    tar: "High",
-                    no_jala: 10,
-                    del_date: "2025-01-05"
-                },
-                {
-                    id: 2,
-                    form_no: "F-102",
-                    jala_type: "Type B",
-                    party_name: "Suresh",
-                    number: "9123456789",
-                    address1: "Madurai",
-                    address2: "TN",
-                    address3: "India",
-                    reed: "No",
-                    tar: "Medium",
-                    no_jala: 5,
-                    del_date: "2025-01-10"
-                },
-                {
-                    id: 3,
-                    form_no: "F-103",
-                    jala_type: "Type C",
-                    party_name: "Anitha",
-                    number: "9000011111",
-                    address1: "Coimbatore",
-                    address2: "TN",
-                    address3: "India",
-                    reed: "Yes",
-                    tar: "Low",
-                    no_jala: 8,
-                    del_date: "2025-01-15"
-                }
-            ];
+            function fetchForms() {
+                $.ajax({
+                    url: "{{ route('form_list.data') }}",
+                    type: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        let html = '';
+                        let i = 1;
+                        $.each(response, function(index, item) {
+                            let statusBadge = '';
+                            if (item.status === 'side file') {
+                                statusBadge = `
+                            <span class="badge status-side">
+                                <i class="fas fa-folder-open"></i> Side File
+                            </span>`;
+                            } else if (item.status === 'running') {
+                                statusBadge = `
+                            <span class="badge status-running">
+                                <i class="fas fa-spinner fa-spin"></i> Running
+                            </span>`;
+                            } else if (item.status === 'complate') {
+                                statusBadge = `
+                            <span class="badge status-complete">
+                                <i class="fas fa-check-circle"></i> Complete
+                            </span>`;
+                            }
 
-            // Render table rows
-            function renderTable(data) {
-                let rows = "";
+                            html += `
+                        <tr>
+                            <td>${item.bill_no ?? ''}</td>
+                            <td>${item.jala_no ?? ''}</td>
+                            <td>${item.firm_name ?? ''}</td>
+                            <td>${item.mo_no ?? ''}</td>
+                            <td>${item.address ?? ''}</td>
+                            <td>${item.f_reed ?? ''}</td>
+                            <td>${item.t_tar ?? ''}</td>
+                            <td>${item.jala_no ?? ''}</td>
+                            <td>${formatDate(item.del_date ?? '')}</td>
+                            <td>${statusBadge}</td>
+                            <td class="action-icons">
+                                <a href="/form_edit/${item.id}" class="action-edit" title="Edit">
+                                    <i class="fas fa-user-pen"></i>
+                                </a>
 
-                if (data.length === 0) {
-                    rows = `<tr>
-                        <td colspan="12" style="text-align:center;">No records found</td>
-                    </tr>`;
-                } else {
-                    $.each(data, function(i, emp) {
-                        rows += `
-                    <tr>
-                        <td>${emp.id}</td>
-                        <td>${emp.form_no}</td>
-                        <td>${emp.jala_type}</td>
-                        <td>${emp.party_name}</td>
-                        <td>${emp.number}</td>
-                        <td>${emp.address1}</td>
-                        <td>${emp.address2}</td>
-                        <td>${emp.address3}</td>
-                        <td>${emp.reed}</td>
-                        <td>${emp.tar}</td>
-                        <td>${emp.no_jala}</td>
-                        <td>${emp.del_date}</td>
-                    </tr>
-                `;
-                    });
-                }
+                                <a href="/production-cards/${item.id}/print" target="_blank" class="action-print" title="Print">
+                                    <i class="fas fa-print"></i>
+                                </a>
 
-                $("#tableBody").html(rows);
+                                <a href="/production-cards/${item.id}/pdf" target="_blank" class="action-pdf" title="PDF">
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    `;
+                        });
+                        $('#tableBody').html(html);
+                    },
+                    error: function() {
+                        alert('AJAX Error: Data not loaded');
+                    }
+                });
             }
-
-            // Initial load
-            renderTable(employees);
-
-            // Search functionality
-            $("#searchInput").on("keyup", function() {
-                const value = $(this).val().toLowerCase();
-
-                const filtered = employees.filter(emp =>
-                    Object.values(emp).some(val =>
-                        val.toString().toLowerCase().includes(value)
-                    )
-                );
-
-                renderTable(filtered);
+            $('#searchInput').on('keyup', function() {
+                let value = $(this).val().toLowerCase();
+                $('#tableBody tr').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
             });
 
+            function formatDate(dateStr) {
+                if (!dateStr) return '';
+                const date = new Date(dateStr);
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}-${month}-${year}`;
+            }
         });
     </script>
 @endsection

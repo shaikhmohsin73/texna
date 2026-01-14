@@ -222,7 +222,7 @@
         /* Team Section */
         .team-box {
             border-bottom: 1.5px solid #000;
-            height: 80px;
+            height: 60px;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -393,66 +393,123 @@
             border-bottom: 1px dashed #ccc;
         }
     </style>
-    <form action="{{ route('projects.store') }}" method="POST">
+
+    <style>
+        .right-team {
+            border: 1px solid #000;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .grid-header {
+            background: #f2f2f2;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .header-cell {
+            padding: 10px;
+        }
+
+        .team-box {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .team-box label {
+            font-size: 12px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .team-box input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .single-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .single-input label {
+            width: 200px;
+        }
+
+        .section-grid h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 10px;
+        }
+    </style>
+    <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card" style="max-width: 1100px; margin: auto; padding: 40px; border: 1px solid #e2e8f0;">
-            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->id != 2)
-                <div class="bill-box">
-                    <div class="form-row">
-                        <div class="f-box flex-3">
-                            <label for="firmName">Firm Name</label>
-                            <input type="text" id="firm_name" name="firm_name">
-                        </div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <div class="f-box">
-                            <label for="orDate">OR. Date</label>
-                            <input type="date" id="or_date" name="or_date">
-                        </div>
+            <div class="bill-box">
+                <div class="form-row">
+                    <div class="f-box flex-3">
+                        <label for="firmName">Firm Name</label>
+                        <input type="text" id="firm_name" name="firm_name">
                     </div>
-                    <div class="form-row">
-                        <div class="f-box flex-3">
-                            <label for="ownName">Own Name</label>
-                            <input type="text" id="own_name" name="own_name">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="f-box">
-                            <label for="moNo">MO. No</label>
-                            <input type="number" id="mo_no" name="mo_no">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="f-box">
-                            <label for="address">Address</label>
-                            <input type="text" id="address" name="address">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="f-box">
-                            <label for="billNo">Bill No.</label>
-                            <input type="text" id="bill_no" name="bill_no">
-                        </div>
-                        <div class="f-box">
-                            <label for="loomNo">Loom No</label>
-                            <input type="text" id="loom_no" name="loom_no">
-                        </div>
-                        <div class="f-box">
-                            <label for="chalanNo">Chalan No</label>
-                            <input type="text" id="chalan_no" name="chalan_no">
-                        </div>
-                        <div class="f-box">
-                            <label for="delDate">Del. Date</label>
-                            <input type="date" id="del_date" name="del_date">
-                        </div>
+                    @endif
+                    <div class="f-box">
+                        <label for="orDate">OR. Date</label>
+                        <input type="date" id="or_date" name="or_date">
                     </div>
                 </div>
-            @endif
+                <div class="form-row">
+                    <div class="f-box flex-3">
+                        <label for="ownName">Own Name</label>
+                        <input type="text" id="own_name" name="own_name">
+                    </div>
+                    <div class="f-box">
+                        <label for="moNo">MO. No</label>
+                        <input type="number" id="mo_no" name="mo_no">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="f-box">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="f-box">
+                        <label for="billNo">Bill No.</label>
+                        <input type="text" id="bill_no" name="bill_no">
+                    </div>
+                    <div class="f-box">
+                        <label for="loomNo">Loom No</label>
+                        <input type="text" id="loom_no" name="loom_no">
+                    </div>
+                    <div class="f-box">
+                        <label for="chalanNo">Chalan No</label>
+                        <input type="text" id="chalan_no" name="chalan_no">
+                    </div>
+                    <div class="f-box">
+                        <label for="delDate">Del. Date</label>
+                        <input type="date" id="del_date" name="del_date">
+                    </div>
+                </div>
+            </div>
             <div style="margin-top: 20px;">
                 <div class="bill-box">
                     <div class="form-row" style="border-top: 1px solid #cbd5e1;">
@@ -479,10 +536,10 @@
                             <label for="pattern_no">Pattern NO</label>
                             <input type="text" id="pattern_no" name="pattern_no">
                         </div>
-                        {{-- <div class="f-box">
+                        <div class="f-box">
                             <label for="pattern_no">Pattern File</label>
                             <input type="File" id="pattern_File" name="pattern_File">
-                        </div> --}}
+                        </div>
                         <div class="f-box">
                             <label for="bharai">Bharai</label>
                             <input type="text" id="bharai" name="bharai">
@@ -575,10 +632,6 @@
                             <label for="doriCutPerson">Dori Cut person</label>
                             <input type="text" id="dori_cut_person" name="dori_cut_person">
                         </div>
-                        <div class="f-box">
-                            <label for="doriKg">Dori Kg</label>
-                            <input type="text" id="dori_kg" name="dori_kg">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -622,6 +675,10 @@
                         <label>Total KG</label>
                         <input type="text" name="total_kg" id="total_kg">
                     </div>
+                    <input type="hidden" id="hidden_total_kg" name="hidden_total_kg">
+                    <input type="hidden" id="jalabarai_value" name="jalabarai_value">
+
+                    <button type="button" id="calculateBtn">Calculate</button>
                 </div>
                 <div class="prod-grid">
                     <div class="left-table">
@@ -733,7 +790,6 @@
                                 <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
                             </div>
                         </div>
-
                         <div class="grid-row">
                             <div class="cell w-gathi">
                                 <input type="text" value="Gathi 2" readonly>
@@ -783,7 +839,6 @@
                                 <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
                             </div>
                         </div>
-
                         <div class="grid-row">
                             <div class="cell w-gathi">
                                 <input type="text" value="Gathi 3" readonly>
@@ -892,21 +947,72 @@
                     </div>
                     <div class="right-team">
                         <div class="grid-header">
-                            <div style="flex:1; padding:10px; border-left:1px solid #000;">
+                            <div class="header-cell">
                                 PERSONNEL / TEAM
                             </div>
                         </div>
-                        <div class="team-box">
-                            <label for="jalaBharaiTeam">JALA BHARAI TEAM</label>
-                            <input type="text" id="jala_bharai_team" name="jala_bharai_team">
+                        <div class="team-box single-input">
+                            <label>JALA BHARAI TEAM</label>
+                            <input type="text" name="jala_bharai_team">
                         </div>
-                        <div class="team-box">
-                            <label for="gButtonTeam">G/B BUTTON TEAM</label>
-                            <input type="text" id="g_button_team" name="g_button_team">
+                        <div class="team-box single-input">
+                            <label>G/B BUTTON TEAM</label>
+                            <input type="text" name="g_button_team">
                         </div>
-                        <div class="team-box">
-                            <label for="gathiPerson">GATHI PERSON | NO OF GAT</label>
-                            <input type="text" id="gathi_person" name="gathi_person">
+                        <div class="team-box section-grid">
+                            <div class="row">
+                                <div>
+                                    <label>GATHI PERSON</label>
+                                    <input type="text" name="gathi_person_[0]">
+                                </div>
+                                <div>
+                                    <label>NO</label>
+                                    <input type="number" name="no_[0]">
+                                </div>
+                                <div>
+                                    <label>NO OF GAT</label>
+                                    <input type="number" name="no_of_gat_[0]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-box section-grid">
+                            <div class="row">
+                                <div>
+                                    <input type="text" name="gathi_person_[1]">
+                                </div>
+                                <div>
+                                    <input type="number" name="no_[1]">
+                                </div>
+                                <div>
+                                    <input type="number" name="no_of_gat_[1]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-box section-grid">
+                            <div class="row">
+                                <div>
+                                    <input type="text" name="gathi_person_[2]">
+                                </div>
+                                <div>
+                                    <input type="number" name="no_[2]">
+                                </div>
+                                <div>
+                                    <input type="number" name="no_of_gat_[2]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-box section-grid">
+                            <div class="row">
+                                <div>
+                                    <input type="text" name="gathi_person_[3]">
+                                </div>
+                                <div>
+                                    <input type="number" name="no_[3]">
+                                </div>
+                                <div>
+                                    <input type="number" name="no_of_gat_[3]">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1003,9 +1109,6 @@
                     FRAME SET + ACCESSORIES
                 </label>
             </div>
-
-            <button type="button" id="calculateBtn">Calculate</button>
-
             <div style="margin-top: 30px; text-align: right; border-top: 1px solid #e2e8f0; padding-top: 20px;">
                 <button type="submit"
                     style="background: #2563eb; color: white; padding: 12px 30px; border: none; border-radius: 6px; font-weight: 800; font-size: 14px; cursor: pointer; transition: background 0.3s; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
@@ -1148,14 +1251,12 @@
     <script>
         window.onload = function() {
             const btn = document.getElementById('calculateBtn');
-
             if (btn) {
                 btn.addEventListener('click', function() {
                     const elTar = document.getElementById('total_tar_new');
                     const elMeter = document.getElementById('meter');
                     const elGathiA = document.getElementById('mul1_a_1_2');
                     const elGathiB = document.getElementById('mul1_b_1_2');
-
                     if (!elTar || !elMeter || !elGathiA || !elGathiB) {
                         alert("Please check: Inputs missing on page!");
                         return;
@@ -1164,10 +1265,9 @@
                     let valMeter = parseFloat(elMeter.value) || 0;
                     let valGathiA = parseFloat(elGathiA.value) || 0;
                     let valGathiB = parseFloat(elGathiB.value) || 0;
-
                     const divider = 39.37;
-                    const factor1 = 0.33;
-                    const factor2 = 0.66;
+                    const factor1 = 0.50;
+                    const factor2 = 0.50;
                     let a_step1 = valTotalTar * valGathiA;
                     let a_step2 = a_step1 / divider;
                     let a_step3 = a_step2 * factor1;
@@ -1176,15 +1276,8 @@
                     let b_step2 = b_step1 / divider;
                     let b_step3 = b_step2 * factor2;
                     let b_final = b_step3 / valMeter;
-                    console.clear();
-                    console.log("Values used:", {
-                        Tar: valTotalTar,
-                        Meter: valMeter,
-                        A: valGathiA,
-                        B: valGathiB
-                    });
-                    console.log("COLOR A FINAL:", a_final.toFixed(2));
-                    console.log("COLOR B FINAL:", b_final.toFixed(2));
+                    // console.log("COLOR A FINAL:", a_final.toFixed(2));
+                    // console.log("COLOR B FINAL:", b_final.toFixed(2));
                     const inputKg1 = document.getElementById('kg_1');
                     if (inputKg1) {
                         inputKg1.value = a_final.toFixed(2);
@@ -1198,6 +1291,27 @@
                         let combinedTotal = a_final + b_final;
                         inputTotalKg.value = combinedTotal.toFixed(2);
                     }
+                    const cuttingrs = document.getElementById('total_kg');
+                    if (cuttingrs) {
+                        let combinedTotal = a_final + b_final;
+                        cuttingrs.value = combinedTotal.toFixed(2);
+                        const hiddenInput = document.getElementById('hidden_total_kg');
+                        if (hiddenInput) {
+                            let multipliedValue = combinedTotal * 5.5;
+                            hiddenInput.value = multipliedValue.toFixed(2);
+                            console.log("Hidden Input Value (Total KG * 5.5):", multipliedValue.toFixed(2));
+                        }
+                    }
+                    const jalabarai = document.getElementById('total_tar_new');
+                    const jalabaraiResult = document.getElementById('jalabarai_value');
+                    if (jalabarai) {
+                        let tarValue = parseFloat(jalabarai.value) || 0;
+                        let calculatedJalabarai = tarValue * 0.25;
+                        if (jalabaraiResult) {
+                            jalabaraiResult.value = calculatedJalabarai.toFixed(2);
+                        }
+                        console.log("Jalabarai (total_tar_new * 0.25):", calculatedJalabarai.toFixed(2));
+                    }
                 });
             } else {
                 console.error("Error: 'calculateBtn' id wala button nahi mila. HTML mein id sahi check karein.");
@@ -1205,3 +1319,12 @@
         };
     </script>
 @endsection
+{{-- ALTER TABLE production_cards
+ADD dori_type_dropdown ENUM('jaadi','patli'),
+ADD meter DECIMAL(10,2),
+ADD br_tar DECIMAL(10,2),
+ADD new_tar DECIMAL(10,2),
+ADD total_tar_new DECIMAL(10,2),
+ADD kg_1 DECIMAL(10,2),
+ADD kg_2 DECIMAL(10,2),
+ADD total_kg DECIMAL(10,2); --}}

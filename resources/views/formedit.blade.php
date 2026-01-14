@@ -10,12 +10,6 @@
             color: #193eeb !important;
         }
 
-
-        input,
-        textarea {
-            color: red;
-        }
-
         .form-row {
             display: flex;
             border-bottom: 1px solid #cbd5e1;
@@ -65,83 +59,52 @@
             flex: 3;
         }
 
-        .prod-table-wrapper {
+        .bill-box {
+            border: 2.5px solid #000;
+            padding: 14px;
+            margin-bottom: 15px;
+        }
+
+        .dori-row-container {
             display: flex;
-            border: 2.5px solid #000000;
-            margin-top: 25px;
+            border: 2.5px solid #000;
+            background: #fff;
+            margin-bottom: 10px;
+            min-height: 70px;
         }
 
-        .table-main {
-            flex: 2.5;
-            border-right: 1px solid #000000;
-        }
-
-        .team-sidebar {
-            flex: 1.2;
-        }
-
-        .t-header {
-            background: #f1f5f9;
-            font-weight: 800;
-            font-size: 11px;
-            text-align: center;
-            border-bottom: 1px solid #cbd5e1;
-            padding: 10px;
-        }
-
-        .t-row {
-            display: flex;
-            border-bottom: 1px solid #cbd5e1;
-            min-height: 40px;
-            align-items: center;
-        }
-
-        .t-cell {
+        .dori-row-item {
             flex: 1;
-            border-right: 1px solid #cbd5e1;
-            padding: 5px;
-            text-align: center;
+            border-right: 2px solid #000;
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .t-cell:last-child {
+        .dori-row-item:last-child {
             border-right: none;
         }
 
-        .t-cell input {
-            width: 100%;
-            border: none;
-            text-align: center;
-            outline: none;
-            font-weight: 700;
-        }
-
-        .team-entry {
-            padding: 15px;
-            border-bottom: 1px solid #cbd5e1;
-            height: 100px;
-        }
-
-        .team-entry:last-child {
-            border-bottom: none;
-        }
-
-        .team-entry label {
-            font-size: 11px;
+        .dori-row-item label {
+            font-size: 10px;
             font-weight: 800;
-            color: var(--primary);
-            display: block;
-            margin-bottom: 8px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            color: #000;
         }
 
-        .team-entry input {
-            width: 100%;
+        .dori-row-item select,
+        .dori-row-item input {
             border: none;
-            border-bottom: 1px dashed #cbd5e1;
             outline: none;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
+            background: transparent;
+            width: 100%;
+            border-bottom: 1px dashed #ccc;
         }
-    </style>
-    <style>
+
         .prod-grid {
             display: flex;
             border: 1.5px solid #000;
@@ -157,7 +120,6 @@
             flex: 1;
         }
 
-        /* Rows */
         .grid-header {
             display: flex;
             background: #f1f5f9;
@@ -173,12 +135,10 @@
             height: 80px;
         }
 
-        /* Row height matching image */
         .grid-row:last-child {
             border-bottom: none;
         }
 
-        /* Cells */
         .cell {
             border-right: 1px solid #cbd5e1;
             display: flex;
@@ -202,7 +162,6 @@
             background: transparent;
         }
 
-        /* The "Math" part inside height/tar */
         .math-box {
             display: flex;
             flex-direction: column;
@@ -217,10 +176,6 @@
             border-bottom: 1px solid #eee;
         }
 
-        .math-line:last-child {
-            border-bottom: none;
-        }
-
         .symbol {
             width: 30px;
             font-weight: bold;
@@ -228,7 +183,6 @@
             font-size: 18px;
         }
 
-        /* Team Section */
         .team-box {
             border-bottom: 1.5px solid #000;
             height: 80px;
@@ -238,42 +192,6 @@
             justify-content: center;
         }
 
-        .team-box:last-child {
-            border-bottom: none;
-        }
-
-        .team-box label {
-            font-size: 11px;
-            font-weight: 800;
-            color: #4361ee;
-            margin-bottom: 5px;
-        }
-
-        .team-box input {
-            border: none;
-            border-bottom: 1px dashed #ccc;
-            outline: none;
-            font-weight: 600;
-            padding: 2px;
-        }
-
-        .w-gathi {
-            width: 80px;
-        }
-
-        .w-tar {
-            width: 100px;
-        }
-
-        .w-total-tar {
-            width: 80px;
-        }
-
-        .w-math {
-            flex: 1;
-        }
-    </style>
-    <style>
         .bottom-section {
             display: flex;
             border: 1.5px solid #000;
@@ -305,27 +223,6 @@
             align-items: center;
         }
 
-        .inner-row:last-child {
-            border-bottom: none;
-        }
-
-        .inner-row label {
-            font-size: 11px;
-            font-weight: 700;
-            width: 120px;
-            color: #475569;
-        }
-
-        .inner-row input {
-            flex: 1;
-            border: none;
-            border-bottom: 1px dashed #ccc;
-            outline: none;
-            font-weight: 600;
-            padding: 2px;
-            background: transparent;
-        }
-
         .checklist-wrapper {
             margin-top: 20px;
             display: flex;
@@ -333,7 +230,6 @@
             gap: 15px;
             padding: 15px;
             border: 1px dashed #cbd5e1;
-            border-radius: 8px;
             background: #fff;
         }
 
@@ -344,258 +240,268 @@
             font-size: 12px;
             font-weight: 700;
             color: #1e293b;
-            cursor: pointer;
         }
 
-        .check-box-item input {
-            width: 16px;
-            height: 16px;
-            accent-color: #4361ee;
-            cursor: pointer;
+        .w-gathi {
+            width: 80px;
+        }
+
+        .w-tar {
+            width: 100px;
+        }
+
+        .w-total-tar {
+            width: 80px;
+        }
+
+        .w-math {
+            flex: 1;
         }
     </style>
-    <style>
-        .bill-box {
-            border: 2.5px solid #000;
-            padding: 14px;
-            margin-bottom: 15px;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <form action="{{ route('production-cards.update', $data->id) }}" 
-      method="POST">
+
+    <form action="{{ route('production-cards.update', $data->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="card" style="max-width: 1100px; margin: auto; padding: 40px; border: 1px solid #e2e8f0;">
+
             <div class="bill-box">
                 <div class="form-row">
                     <div class="f-box flex-3">
-                        <label for="firmName">Firm Name</label>
-                        <input type="text" id="firm_name" name="firm_name" value="{{ $data->firm_name }}">
+                        <label>Firm Name</label>
+                        <input type="text" name="firm_name" value="{{ $data->firm_name }}">
                     </div>
                     <div class="f-box">
-                        <label for="orDate">OR. Date</label>
-                        <input type="date" id="or_date" name="or_date"
+                        <label>OR. Date</label>
+                        <input type="date" name="or_date"
                             value="{{ $data->or_date ? $data->or_date->format('Y-m-d') : '' }}">
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="f-box flex-3">
-                        <label for="ownName">Own Name</label>
-                        <input type="text" id="own_name" name="own_name" value="{{ $data->own_name }}">
+                        <label>Own Name</label>
+                        <input type="text" name="own_name" value="{{ $data->own_name }}">
                     </div>
                     <div class="f-box">
-                        <label for="moNo">MO. No</label>
-                        <input type="number" id="mo_no" name="mo_no" value="{{ $data->mo_no }}">
+                        <label>MO. No</label>
+                        <input type="number" name="mo_no" value="{{ $data->mo_no }}">
                     </div>
                 </div>
-
                 <div class="form-row">
-                    <div class="f-box">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" value="{{ $data->address }}">
-                    </div>
+                    <div class="f-box"><label>Address</label><input type="text" name="address"
+                            value="{{ $data->address }}"></div>
                 </div>
-
                 <div class="form-row">
-                    <div class="f-box">
-                        <label for="billNo">Bill No.</label>
-                        <input type="text" id="bill_no" name="bill_no" value="{{ $data->bill_no }}">
-                    </div>
-                    <div class="f-box">
-                        <label for="loomNo">Loom No</label>
-                        <input type="text" id="loom_no" name="loom_no" value="{{ $data->loom_no }}">
-                    </div>
-                    <div class="f-box">
-                        <label for="chalanNo">Chalan No</label>
-                        <input type="text" id="chalan_no" name="chalan_no" value="{{ $data->chalan_no }}">
-                    </div>
-                    <div class="f-box">
-                        <label for="delDate">Del. Date</label>
-                        <input type="date" id="del_date" name="del_date"
-                            value="{{ $data->del_date ? $data->del_date->format('Y-m-d') : '' }}">
-                    </div>
+                    <div class="f-box"><label>Bill No.</label><input type="text" name="bill_no"
+                            value="{{ $data->bill_no }}"></div>
+                    <div class="f-box"><label>Loom No</label><input type="text" name="loom_no"
+                            value="{{ $data->loom_no }}"></div>
+                    <div class="f-box"><label>Chalan No</label><input type="text" name="chalan_no"
+                            value="{{ $data->chalan_no }}"></div>
+                    <div class="f-box"><label>Del. Date</label><input type="date" name="del_date"
+                            value="{{ $data->del_date ? $data->del_date->format('Y-m-d') : '' }}"></div>
                 </div>
             </div>
 
-            <div style="margin-top: 20px;">
-                <div class="bill-box">
-                    <div class="form-row" style="border-top: 1px solid #cbd5e1;">
-                        <div class="f-box">
-                            <label for="jalaNo">Jala No</label>
-                            <input type="text" id="jala_no" name="jala_no" value="{{ $data->jala_no }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="fReed">F.Reed</label>
-                            <input type="text" id="f_reed" name="f_reed" value="{{ $data->f_reed }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="line">Line</label>
-                            <input type="text" id="line" name="line" value="{{ $data->line }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="pcs">PCS</label>
-                            <input type="text" id="pcs" name="pcs" value="{{ $data->pcs }}">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="f-box">
-                            <label for="pattern_no">Pattern NO</label>
-                            <input type="text" id="pattern_no" name="pattern_no" value="{{ $data->pattern_no }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="bharai">Bharai</label>
-                            <input type="text" id="bharai" name="bharai" value="{{ $data->bharai }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="pana">Pana</label>
-                            <input type="text" id="pana" name="pana" value="{{ $data->pana }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="tTar">T.Tar</label>
-                            <input type="text" id="t_tar" name="t_tar" value="{{ $data->t_tar }}" readonly>
-                        </div>
+            <div class="bill-box">
+                <div class="form-row">
+                    <div class="f-box"><label>Jala No</label><input type="text" name="jala_no"
+                            value="{{ $data->jala_no }}"></div>
+                    <div class="f-box"><label>F.Reed</label><input type="text" name="f_reed"
+                            value="{{ $data->f_reed }}"></div>
+                    <div class="f-box"><label>Line</label><input type="text" name="line"
+                            value="{{ $data->line }}"></div>
+                    <div class="f-box"><label>PCS</label><input type="text" name="pcs" value="{{ $data->pcs }}">
                     </div>
                 </div>
-
-                <div class="bill-box">
-                    <div class="form-row">
-                        <div class="f-box"><label>U.Frame</label><input type="text" name="u_frame"
-                                value="{{ $data->u_frame }}"></div>
-                        <div class="f-box"><label>Size</label><input type="text" name="size"
-                                value="{{ $data->size }}"></div>
-                        <div class="f-box"><label>L.Frame</label><input type="text" name="l_frame"
-                                value="{{ $data->l_frame }}"></div>
-                        <div class="f-box"><label>Kaski</label><input type="text" name="kaski"
-                                value="{{ $data->kaski }}"></div>
-                    </div>
-                    <div class="form-row">
-                        <div class="f-box"><label>U.Belt</label><input type="text" name="u_belt"
-                                value="{{ $data->u_belt }}"></div>
-                        <div class="f-box"><label>L.Belt</label><input type="text" name="l_belt"
-                                value="{{ $data->l_belt }}"></div>
-                        <div class="f-box"><label>Labour</label><input type="text" name="labour"
-                                value="{{ $data->labour }}"></div>
-                        <div class="f-box"><label>M/C Name</label><input type="text" name="mc_name"
-                                value="{{ $data->mc_name }}"></div>
-                    </div>
+                <div class="form-row">
+                    <div class="f-box"><label>Pattern NO</label><input type="text" name="pattern_no"
+                            value="{{ $data->pattern_no }}"></div>
+                    <div class="f-box"><label>Bharai</label><input type="text" name="bharai"
+                            value="{{ $data->bharai }}"></div>
+                    <div class="f-box"><label>Pana</label><input type="text" name="pana"
+                            value="{{ $data->pana }}"></div>
+                    <div class="f-box"><label>T.Tar</label><input type="text" id="t_tar" name="t_tar"
+                            value="{{ $data->t_tar }}" readonly></div>
                 </div>
-                <div class="bill-box">
-                    <div class="form-row">
-                        <div class="f-box">
-                            <label for="spring">Spring</label>
-                            <input type="text" id="spring" name="spring" value="{{ $data->spring }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="raj">Raj</label>
-                            <input type="text" id="raj" name="raj" value="{{ $data->raj }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="patti">Patti</label>
-                            <input type="text" id="patti" name="patti" value="{{ $data->patti }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="legpin">Legpin</label>
-                            <input type="text" id="legpin" name="legpin" value="{{ $data->legpin }}">
-                        </div>
-                    </div>
+            </div>
 
-                    <div class="form-row">
-                        <div class="f-box">
-                            <label for="tube">Tube</label>
-                            <input type="text" id="tube" name="tube" value="{{ $data->tube }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="totalPcs">To.Pcs</label>
-                            <input type="text" id="total_pcs" name="total_pcs" value="{{ $data->total_pcs }}">
-                        </div>
-                        <div class="f-box flex-2">
-                            <label for="doriType">Dori Type</label>
-                            <input type="text" id="dori_type" name="dori_type" value="{{ $data->dori_type }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="doriCutPerson">Dori Cut person</label>
-                            <input type="text" id="dori_cut_person" name="dori_cut_person"
-                                value="{{ $data->dori_cut_person }}">
-                        </div>
-                        <div class="f-box">
-                            <label for="doriKg">Dori Kg</label>
-                            <input type="text" id="dori_kg" name="dori_kg" value="{{ $data->dori_kg }}">
-                        </div>
-                    </div>
+            <div class="bill-box">
+                <div class="form-row">
+                    <div class="f-box"><label>U.Frame</label><input type="text" name="u_frame"
+                            value="{{ $data->u_frame }}"></div>
+                    <div class="f-box"><label>Size</label><input type="text" name="size"
+                            value="{{ $data->size }}"></div>
+                    <div class="f-box"><label>L.Frame</label><input type="text" name="l_frame"
+                            value="{{ $data->l_frame }}"></div>
+                    <div class="f-box"><label>Kaski</label><input type="text" name="kaski"
+                            value="{{ $data->kaski }}"></div>
                 </div>
+                <div class="form-row">
+                    <div class="f-box"><label>U.Belt</label><input type="text" name="u_belt"
+                            value="{{ $data->u_belt }}"></div>
+                    <div class="f-box"><label>L.Belt</label><input type="text" name="l_belt"
+                            value="{{ $data->l_belt }}"></div>
+                    <div class="f-box"><label>Labour</label><input type="text" name="labour"
+                            value="{{ $data->labour }}"></div>
+                    <div class="f-box"><label>M/C Name</label><input type="text" name="mc_name"
+                            value="{{ $data->mc_name }}"></div>
+                </div>
+            </div>
 
-                <div class="prod-grid">
-                    <div class="left-table">
-                        <div class="grid-header">
-                            <div class="w-gathi">GATHI</div>
-                            <div class="w-tar">BORDER TAR</div>
-                            <div class="w-total-tar">TO TAR</div>
-                            <div style="flex:1;">HEIGHT</div>
-                            <div style="flex:1;">TAR QTY</div>
-                        </div>
+            <div class="bill-box">
+                <div class="form-row">
+                    <div class="f-box"><label>Spring</label><input type="text" name="spring"
+                            value="{{ $data->spring }}"></div>
+                    <div class="f-box"><label>Raj</label><input type="text" name="raj"
+                            value="{{ $data->raj }}"></div>
+                    <div class="f-box"><label>Patti</label><input type="text" name="patti"
+                            value="{{ $data->patti }}"></div>
+                    <div class="f-box"><label>Legpin</label><input type="text" name="legpin"
+                            value="{{ $data->legpin }}"></div>
+                </div>
+                <div class="form-row">
+                    <div class="f-box"><label>Tube</label><input type="text" name="tube"
+                            value="{{ $data->tube }}"></div>
+                    <div class="f-box"><label>To.Pcs</label><input type="text" name="total_pcs"
+                            value="{{ $data->total_pcs }}"></div>
+                    <div class="f-box flex-2"><label>Dori Type</label><input type="text" name="dori_type"
+                            value="{{ $data->dori_type }}"></div>
+                    <div class="f-box"><label>Dori Cut person</label><input type="text" name="dori_cut_person"
+                            value="{{ $data->dori_cut_person }}"></div>
+                    <div class="f-box"><label>Dori Kg</label><input type="text" name="dori_kg"
+                            value="{{ $data->dori_kg }}"></div>
+                </div>
+            </div>
 
-                        @for ($i = 0; $i < 5; $i++)
-                            @php $item = $data->items->get($i); @endphp
-                            <div class="grid-row">
-                                <div class="cell w-gathi"><input type="text" value="Gathi {{ $i + 1 }}"
-                                        readonly></div>
-                                <div class="cell w-tar">
-                                    <input type="text" name="gathi_items[{{ $i }}][border_tar]"
-                                        value="{{ $item->border_tar ?? '' }}">
-                                </div>
-                                <div class="cell w-total-tar">
-                                    <input type="text" name="gathi_items[{{ $i }}][to_tar]"
-                                        value="{{ $item->to_tar ?? '' }}">
-                                </div>
-                                <div class="cell w-math">
-                                    <div class="math-box">
-                                        <div class="math-line"><input type="text"
-                                                name="gathi_items[{{ $i }}][height_a]"
-                                                value="{{ $item->height_a ?? '' }}"></div>
-                                        <div class="math-line"><input type="text"
-                                                name="gathi_items[{{ $i }}][height_b]"
-                                                value="{{ $item->height_b ?? '' }}"></div>
-                                    </div>
-                                </div>
-                                <div class="cell w-math">
-                                    <div class="math-box">
-                                        <div class="math-line"><input type="text"
-                                                name="gathi_items[{{ $i }}][tar_qty_a]"
-                                                value="{{ $item->tar_qty_a ?? '' }}"></div>
-                                        <div class="math-line"><input type="text"
-                                                name="gathi_items[{{ $i }}][tar_qty_b]"
-                                                value="{{ $item->tar_qty_b ?? '' }}"></div>
-                                    </div>
+            <div class="dori-row-container">
+                <div class="dori-row-item">
+                    <label>Dori Type</label>
+                    <select name="dori_type_dropdown" id="dori_type_dropdown">
+                        <option value="">Select</option>
+                        <option value="jaadi" {{ $data->dori_type_dropdown == 'jaadi' ? 'selected' : '' }}>Jaadi</option>
+                        <option value="patli" {{ $data->dori_type_dropdown == 'patli' ? 'selected' : '' }}>Patli</option>
+                    </select>
+                </div>
+                <div class="dori-row-item"><label>METER'S</label><input type="text" name="meter" id="meter"
+                        value="{{ $data->meter }}" readonly></div>
+                <div class="dori-row-item"><label>BR TAR</label><input type="text" name="br_tar" id="br_tar"
+                        value="{{ $data->br_tar }}" readonly></div>
+                <div class="dori-row-item"><label>TAR</label><input type="text" name="new_tar" id="new_tar"
+                        value="{{ $data->new_tar }}" readonly></div>
+                <div class="dori-row-item"><label>TOTAL TAR</label><input type="text" name="total_tar_new"
+                        id="total_tar_new" value="{{ $data->total_tar_new }}" readonly></div>
+                <div class="dori-row-item"><label>COLOUR-1 KG</label><input type="text" name="kg_1" id="kg_1"
+                        value="{{ $data->kg_1 }}"></div>
+                <div class="dori-row-item"><label>COLOUR-2 KG</label><input type="text" name="kg_2" id="kg_2"
+                        value="{{ $data->kg_2 }}"></div>
+                <div class="dori-row-item"><label>Total KG</label><input type="text" name="total_kg" id="total_kg"
+                        value="{{ $data->total_kg }}"></div>
+            </div>
+
+            <div class="prod-grid">
+                <div class="left-table">
+                    <div class="grid-header">
+                        <div class="w-gathi" style="padding:10px;">BORDER GATHI</div>
+                        <div class="w-tar" style="padding:10px;">BORDER TAR</div>
+                        <div class="w-total-tar" style="padding:10px;">TO TAR</div>
+                        <div class="w-total-tar" style="padding:10px;">GATHI TYPE</div>
+                        <div style="flex:1; padding:10px;">HEIGHT</div>
+                        <div style="flex:1; padding:10px;">TAR QTY</div>
+                        <div style="flex:1; padding:10px;">Colour-1</div>
+                        <div style="flex:1; padding:10px;">Colour-2</div>
+                    </div>
+
+                    @for ($i = 0; $i < 5; $i++)
+                        @php $item = $data->items->get($i); @endphp
+                        <div class="grid-row">
+                            <div class="cell w-gathi">
+                                <input type="text" value="{{ $i == 0 ? 'BORDER' : 'Gathi ' . $i }}" readonly>
+                            </div>
+                            <div class="cell w-tar">
+                                <input type="text" id="tar_{{ $i + 1 }}"
+                                    name="gathi_items[{{ $i }}][border_tar]"
+                                    value="{{ $item->border_tar ?? '' }}">
+                            </div>
+                            <div class="cell w-total-tar">
+                                <input type="text" id="totalTar_{{ $i + 1 }}"
+                                    name="gathi_items[{{ $i }}][to_tar]" value="{{ $item->to_tar ?? '' }}">
+                            </div>
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line"><input type="text" id="gathi_a_{{ $i + 1 }}"
+                                            name="gathi_items[{{ $i }}][gathi_types_a]"
+                                            value="{{ $item->gathi_types_a ?? '' }}"></div>
+                                    <div class="math-line"><input type="text" id="gathi_b_{{ $i + 1 }}"
+                                            name="gathi_items[{{ $i }}][gathi_types_b]"
+                                            value="{{ $item->gathi_types_b ?? '' }}"></div>
                                 </div>
                             </div>
-                        @endfor
+                            <div class="cell w-math" style="padding:0;">
+                                <div class="math-box">
+                                    <div class="math-line"><span class="symbol">*</span><input type="text"
+                                            id="mul1_a_{{ $i + 1 }}"
+                                            name="gathi_items[{{ $i }}][height_a]"
+                                            value="{{ $item->height_a ?? '' }}"></div>
+                                    <div class="math-line"><span class="symbol">*</span><input type="text"
+                                            id="mul1_b_{{ $i + 1 }}"
+                                            name="gathi_items[{{ $i }}][height_b]"
+                                            value="{{ $item->height_b ?? '' }}"></div>
+                                </div>
+                            </div>
+                            <div class="cell w-math" style="padding:0; border-right:none;">
+                                <div class="math-box">
+                                    <div class="math-line"><span class="symbol">=</span><input type="text"
+                                            id="eq1_a_{{ $i + 1 }}"
+                                            name="gathi_items[{{ $i }}][tar_qty_a]"
+                                            value="{{ $item->tar_qty_a ?? '' }}"></div>
+                                    <div class="math-line"><span class="symbol">=</span><input type="text"
+                                            id="eq1_b_{{ $i + 1 }}"
+                                            name="gathi_items[{{ $i }}][tar_qty_b]"
+                                            value="{{ $item->tar_qty_b ?? '' }}"></div>
+                                </div>
+                            </div>
+                            <div class="cell w-total-tar"><input type="text"
+                                    name="gathi_items[{{ $i }}][color_1]" value="{{ $item->color_1 ?? '' }}">
+                            </div>
+                            <div class="cell w-total-tar"><input type="text"
+                                    name="gathi_items[{{ $i }}][color_2]" value="{{ $item->color_2 ?? '' }}">
+                            </div>
+                        </div>
+                    @endfor
 
-                        <div class="grid-row" style="background: #f8fafc;">
-                            <div style="flex: 4.2; text-align: right; padding: 10px; font-weight: 800;">TOTAL</div>
-                            <div class="cell" style="flex: 1;"><input type="text" id="grand_total"
-                                    name="grand_total" value="{{ $data->grand_total }}"></div>
+                    <div class="grid-row" style="height: 40px; background: #f8fafc;">
+                        <div style="flex: 4.2; text-align: right; padding: 10px; font-weight: 800;">TOTAL</div>
+                        <div class="cell" style="flex: 1; border-left: 1.5px solid #000;">
+                            <span class="symbol">=</span>
+                            <input type="text" id="grand_total" name="grand_total" value="{{ $data->grand_total }}">
                         </div>
                     </div>
+                </div>
 
-                    <div class="right-team">
-                        <div class="team-box"><label>JALA BHARAI TEAM</label><input type="text"
-                                name="jala_bharai_team" value="{{ $data->jala_bharai_team }}"></div>
-                        <div class="team-box"><label>G/B BUTTON TEAM</label><input type="text" name="g_button_team"
-                                value="{{ $data->g_button_team }}"></div>
-                        <div class="team-box"><label>GATHI PERSON | NO OF GAT</label><input type="text"
-                                name="gathi_person" value="{{ $data->gathi_person }}"></div>
+                <div class="right-team">
+                    <div class="grid-header">
+                        <div style="flex:1; padding:10px; border-left:1px solid #000;">PERSONNEL / TEAM</div>
+                    </div>
+                    <div class="team-box">
+                        <label>JALA BHARAI TEAM</label>
+                        <input type="text" name="jala_bharai_team" value="{{ $data->jala_bharai_team }}">
+                    </div>
+                    <div class="team-box">
+                        <label>G/B BUTTON TEAM</label>
+                        <input type="text" name="g_button_team" value="{{ $data->g_button_team }}">
+                    </div>
+                    <div class="team-box">
+                        <label>GATHI PERSON | NO OF GAT</label>
+                        <input type="text" name="gathi_person" value="{{ $data->gathi_person }}">
                     </div>
                 </div>
             </div>
 
             <div class="bottom-section">
                 <div class="jala-khola">
-                    <div class="sub-title" style="display: flex; align-items: center; gap: 10px;">OLD JALA KHOLA Team
+                    <div class="sub-title">OLD JALA KHOLA Team
                         <input type="text" name="old_jala_khola_team" value="{{ $data->old_jala_khola_team }}"
-                            style="flex: 1; border: none; border-bottom: 1px solid #334155; background: transparent; height: 18px; font-size: 13px; font-weight: 700; color: #1e293b; outline: none; padding: 0 5px;">
+                            style="width:200px; border:none; border-bottom:1px solid #000; background:transparent;">
                     </div>
                     <div class="inner-row"><label>R.S. SET</label><input type="text" name="rs_set"
                             value="{{ $data->rs_set }}"></div>
@@ -608,24 +514,27 @@
                     <div class="inner-row">
                         <label>Kaccha/Pakka Team</label><input type="text" name="kaccha_pakka_team"
                             value="{{ $data->kaccha_pakka_team }}">
-                        <label>Date:</label><input type="date" name="kaccha_pakka_date"
+                        <label style="width:auto; margin-left:10px;">Date:</label><input type="date"
+                            name="kaccha_pakka_date"
                             value="{{ $data->kaccha_pakka_date ? $data->kaccha_pakka_date->format('Y-m-d') : '' }}">
                     </div>
                 </div>
-
                 <div class="guide-board">
-                    <div class="inner-row"><label>BUTTON TEXNA</label><input type="text" id="button_texna"
+                    <div class="sub-title">Guide Board / Texna</div>
+                    <div class="inner-row" style="height: 60px;"><label>BUTTON TEXNA</label><input type="text"
                             name="button_texna" value="{{ $data->button_texna }}"></div>
-                    <div class="inner-row"><label>GUIDE BOARD TEXNA</label>
-                        <textarea id="guide_board_texna" name="guide_board_texna"
-                            style="width: 100%; height: 100%; border: none; outline: none; resize: none; font-weight: 600; font-family: inherit; margin-top: 5px;">{{ $data->guide_board_texna }}</textarea>
+                    <div class="inner-row" style="height: 80px; flex-direction: column; align-items: flex-start;">
+                        <label>GUIDE BOARD TEXNA</label>
+                        <textarea name="guide_board_texna" style="width:100%; height:100%; border:none; outline:none; resize:none;">{{ $data->guide_board_texna }}</textarea>
                     </div>
                 </div>
             </div>
 
             <div style="margin-top: 20px; border: 1.5px solid #000;">
-                <div style="background: #f1f5f9; padding: 5px;">Remark</div>
-                <textarea name="remark" style="width: 100%; min-height: 80px;">{{ $data->remark }}</textarea>
+                <div class="sub-title">Remark / Special Instructions</div>
+                <div style="padding: 10px;">
+                    <textarea name="remark" style="width: 100%; min-height: 80px; border: none; outline: none;">{{ $data->remark }}</textarea>
+                </div>
             </div>
 
             <div class="checklist-wrapper">
@@ -639,49 +548,73 @@
             </div>
 
             <div style="margin-top: 30px; text-align: right;">
-                <button type="submit" style="background: #2563eb; color: white; padding: 12px 30px;">UPDATE DATA</button>
-
+                <button type="button" id="calculateBtn"
+                    style="background: #10b981; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 4px; font-weight: 800; margin-right: 10px;">CALCULATE</button>
+                <button type="submit"
+                    style="background: #2563eb; color: white; padding: 12px 30px; border: none; border-radius: 6px; font-weight: 800; cursor: pointer;">UPDATE
+                    DATA</button>
             </div>
         </div>
     </form>
 
     <script>
-        const menuLinks = document.querySelectorAll('.menu a');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                menuLinks.forEach(link => link.classList.remove('active'));
-                link.classList.add('active');
-            });
-        });
-        const currentUrl = window.location.pathname;
-        menuLinks.forEach(link => {
-            if (link.href.includes(currentUrl)) {
-                link.classList.add('active');
+        // Dori Logic
+        const doriDropdown = document.getElementById('dori_type_dropdown');
+        const brTarInput = document.getElementById('meter');
+        doriDropdown.addEventListener('change', function() {
+            if (this.value === 'jaadi') {
+                brTarInput.value = 1710;
+            } else if (this.value === 'patli') {
+                brTarInput.value = 2100;
+            } else {
+                brTarInput.value = '';
             }
         });
-    </script>
-    <script>
-        function calculateTotalToPCS() {
-            let total = 0;
-            document.querySelectorAll('.grid-row').forEach(row => {
-                const tarInput = row.querySelector('input[id^="tar_"]');
-                const totalTarInput = row.querySelector('input[id^="totalTar_"]');
-                const borderTar = parseFloat(tarInput?.value) || 0;
-                const toTar = parseFloat(totalTarInput?.value) || 0;
-                total += borderTar * toTar;
-            });
-            const pcsInput = document.getElementById('t_tar');
-            if (pcsInput) {
-                pcsInput.value = total.toFixed(2);
-            }
-        }
+
+        // Calculation Logic (Exactly like form.blade)
         document.addEventListener('input', function(e) {
-            if (
-                e.target.id.includes('tar_') ||
-                e.target.id.includes('totalTar_')
-            ) {
-                calculateTotalToPCS();
+            const tar1 = parseFloat(document.getElementById('tar_1')?.value) || 0;
+            const totalTar1 = parseFloat(document.getElementById('totalTar_1')?.value) || 0;
+            const brTarInputVal = document.getElementById('br_tar');
+            const brTarValue = tar1 * totalTar1;
+            if (brTarInputVal) brTarInputVal.value = brTarValue;
+
+            let tarTotal = 0;
+            for (let i = 2; i <= 5; i++) {
+                const tar = parseFloat(document.getElementById('tar_' + i)?.value) || 0;
+                const totalTar = parseFloat(document.getElementById('totalTar_' + i)?.value) || 0;
+                tarTotal += tar * totalTar;
             }
+            const newTarInput = document.getElementById('new_tar');
+            if (newTarInput) newTarInput.value = tarTotal;
+
+            const totalTarNewInput = document.getElementById('total_tar_new');
+            if (totalTarNewInput) {
+                totalTarNewInput.value = brTarValue + tarTotal;
+            }
+            const tTarInput = document.getElementById('t_tar');
+            if (tTarInput) {
+                tTarInput.value = brTarValue + tarTotal;
+            }
+        });
+
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            const elTar = document.getElementById('total_tar_new');
+            const elMeter = document.getElementById('meter');
+            // Using IDs from the first dynamic row as example
+            const valTotalTar = parseFloat(elTar.value) || 0;
+            const valMeter = parseFloat(elMeter.value) || 0;
+
+            const divider = 39.37;
+            const factor1 = 0.33;
+            const factor2 = 0.66;
+
+            let a_final = ((valTotalTar / divider) * factor1) / valMeter;
+            let b_final = ((valTotalTar / divider) * factor2) / valMeter;
+
+            document.getElementById('kg_1').value = a_final.toFixed(2);
+            document.getElementById('kg_2').value = b_final.toFixed(2);
+            document.getElementById('total_kg').value = (a_final + b_final).toFixed(2);
         });
     </script>
 @endsection

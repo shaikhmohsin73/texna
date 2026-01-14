@@ -21,8 +21,6 @@
         <form action="{{ route('party.update', $party->id) }}" method="POST">
             @csrf
             @method('PUT')
-
-            {{-- SR No (Read-only) --}}
             <div class="mb-3">
                 <label class="form-label">Serial Number</label>
                 <input type="text" class="form-control" value="{{ $party->sr_no }}" readonly>

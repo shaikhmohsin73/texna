@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\FormExport;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -43,6 +47,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             'firm_name' => 'nullable|string|max:255',
             'or_date' => 'nullable|date',
@@ -60,6 +65,7 @@ class ProductController extends Controller
             'line' => 'nullable|string|max:255',
             'pcs' => 'nullable|string|max:255',
             'pattern_no' => 'nullable|string|max:255',
+            'pattern_File' => 'nullable|mimes:pdf|max:5120',
             'bharai' => 'nullable|string|max:255',
             'pana' => 'nullable|string|max:255',
             't_tar' => 'nullable|string|max:255',
@@ -97,6 +103,16 @@ class ProductController extends Controller
             'kaccha_pakka_team' => 'nullable|string|max:255',
             'kaccha_pakka_date' => 'nullable|date',
 
+            'dori_type_dropdown' => 'nullable|in:jaadi,patli',
+
+            'meter'          => 'nullable|numeric|min:0',
+            'br_tar'         => 'nullable|numeric|min:0',
+            'new_tar'        => 'nullable|numeric|min:0',
+            'total_tar_new'  => 'nullable|numeric|min:0',
+            'kg_1'           => 'nullable|numeric|min:0',
+            'kg_2'           => 'nullable|numeric|min:0',
+            'total_kg'       => 'nullable|numeric|min:0',
+
             // Textareas
             'button_texna' => 'nullable|string',
             'guide_board_texna' => 'nullable|string',
@@ -106,7 +122,7 @@ class ProductController extends Controller
             'checklist' => 'nullable|array',
 
             // Grand Total
-            'grand_total' => 'nullable|numeric',
+            'grand_total' => 'nullable|numeric',    
 
             // Gathi Items
             'gathi_items' => 'nullable|array',
@@ -124,6 +140,11 @@ class ProductController extends Controller
             if (isset($projectData['checklist'])) {
                 $projectData['checklist'] = $projectData['checklist'];
             }
+            if ($request->hasFile('pattern_File')) {
+                $file = $request->file('pattern_File');
+                $path = $file->store('pattern_files', 'public');
+                $projectData['pattern_File'] = $path;
+            }
             $project = ProductionCard::create($projectData);
             if ($request->has('gathi_items')) {
                 foreach ($request->gathi_items as $item) {
@@ -133,12 +154,10 @@ class ProductController extends Controller
                 }
             }
             DB::commit();
-
             return redirect()->back()->with('success', 'Data successfully saved!');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
-
             return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }
     }
@@ -250,14 +269,38 @@ class ProductController extends Controller
 
     public function print($id)
     {
-       $data = ProductionCard::with('items')->findOrFail($id);
+        $data = ProductionCard::with('items')->findOrFail($id);
         return view('print', compact('data'));
     }
 
     public function pdf($id)
     {
-         $data = ProductionCard::with('items')->findOrFail($id);
+        $data = ProductionCard::with('items')->findOrFail($id);
         $pdf = PDF::loadView('print', compact('data'));
         return $pdf->download('production_card_' . $data->id . '.pdf');
+    }
+
+    public function export(Request $request)
+    {
+        $ids = array_filter(array_map('trim', explode(',', $request->ids)));
+        if (empty($ids)) {
+            return back()->with('error', 'No IDs selected for export.');
+        }
+
+        return Excel::download(new FormExport($ids), 'forms.xlsx');
+    }
+
+    public function show($id)
+    {
+        $project = ProductionCard::find($id);
+        if (!$project) {
+            abort(404, 'Project not found.');
+        }
+        $filePathFromDb = $project->pattern_File;
+        $fullPath = public_path("storage/{$filePathFromDb}");
+        if (!File::exists($fullPath)) {
+            abort(404, 'Pattern file not found.');
+        }
+        return Response::file($fullPath);
     }
 }

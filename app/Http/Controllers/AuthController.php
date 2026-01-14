@@ -36,7 +36,7 @@ class AuthController extends Controller
                     "🌐 IP: <b>$ip</b>\n" .
                     "⏰ Time: <b>$time</b>"
             );
-            return redirect()->route('employee');
+            return redirect()->route('dashboard');
         }
         sendTelegramMessage(
             "❌ <b>Failed Login Attempt</b>\n\n" .

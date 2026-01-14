@@ -7,7 +7,29 @@
     <title>Texna Premium Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .menu a i {
+            color: #0d6efd;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            background: #f1f5ff;
+            border-radius: 6px;
+        }
+
         .x-logo {
             display: block;
             margin: 20px auto;
@@ -148,19 +170,41 @@
         <nav class="sidebar">
             <img src="https://texna.in/SVG/Texna%20Logo%20TM.svg" class="x-logo" alt="X">
             <div class="menu">
-                <a href="/employees">👤 Employee</a>
-                <a href="/location">📍 Locations</a>
-                <a href="/form_list">📝 Form</a>
-                <a href="/party_name">👤 Party Name</a>
-                <a href="/logout">🔒 Logout</a>
+                <a href="/dashboard">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="/employees">
+                    <i class="fa-solid fa-users"></i> Employee
+                </a>
+
+                <a href="/location">
+                    <i class="fa-solid fa-location-dot"></i> Locations
+                </a>
+
+                <a href="/form_list">
+                    <i class="fa-solid fa-file-lines"></i> Form
+                </a>
+
+                <a href="/party_name">
+                    <i class="fa-solid fa-user-tie"></i> Party Name
+                </a>
+
+                <a href="/marketing">
+                    <i class="fa-solid fa-bullhorn"></i> Marketing
+                </a>
+
+                <a href="/logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
             </div>
+
         </nav>
         <div class="main">
             <header>
                 <h3>Dashboard</h3>
                 <div style="color: var(--primary); font-weight: 600;">Admin Account</div>
             </header>
-            @yield('content');
+            @yield('content')
         </div>
     </div>
 </body>

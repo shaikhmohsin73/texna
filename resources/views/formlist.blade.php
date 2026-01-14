@@ -1,10 +1,22 @@
 @extends('layouts.header')
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
     <style>
         .add-btn {
             background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .excel {
+            background: linear-gradient(135deg, #075800, #075800);
             color: #fff;
             padding: 8px 14px;
             border-radius: 6px;
@@ -105,17 +117,20 @@
                 @endif
                 <div style="display:flex; gap:10px; align-items:center;">
                     <input type="text" class="search-box" id="searchInput" placeholder="Search name, phone, status...">
-
                     <a href="{{ route('form_create') }}" class="add-btn">
                         <i class="fa-solid fa-plus"></i> Add New
                     </a>
+                    <button id="exportExcel" class="excel">
+                        <i class="fa-solid fa-file-excel"></i> Export Excel
+                    </button>
                 </div>
             </div>
 
             <table id="employeeTable">
                 <thead>
                     <tr>
-                        <th>Form N</th>
+                        <th><input type="checkbox" id="selectAll"></th>
+                        <th>Form No</th>
                         <th>Jala type</th>
                         <th>Party Name</th>
                         <th>Number</th>
@@ -166,9 +181,10 @@
                                 <i class="fas fa-check-circle"></i> Complete
                             </span>`;
                             }
-
                             html += `
-                        <tr>
+                            <tr> <td>
+                                <input type="checkbox" class="rowCheckbox" value="${item.id}">
+                            </td>
                             <td>${item.bill_no ?? ''}</td>
                             <td>${item.jala_no ?? ''}</td>
                             <td>${item.firm_name ?? ''}</td>
@@ -190,7 +206,12 @@
 
                                 <a href="/production-cards/${item.id}/pdf" target="_blank" class="action-pdf" title="PDF">
                                     <i class="fas fa-file-pdf"></i>
-                                </a>
+                              <a href="/pattern-file/${item.id}" target="_blank" class="action-pattern" title="Pattern File">
+    <i class="fas fa-th-large"></i>
+</a>
+
+
+
                             </td>
                         </tr>
                     `;
@@ -202,6 +223,7 @@
                     }
                 });
             }
+            
             $('#searchInput').on('keyup', function() {
                 let value = $(this).val().toLowerCase();
                 $('#tableBody tr').filter(function() {
@@ -217,6 +239,23 @@
                 const year = date.getFullYear();
                 return `${day}-${month}-${year}`;
             }
+        });
+
+        $('#selectAll').on('change', function() {
+            $('.rowCheckbox').prop('checked', this.checked);
+        });
+        $('#exportExcel').on('click', function() {
+            let selectedIds = [];
+
+            $('.rowCheckbox:checked').each(function() {
+                selectedIds.push($(this).val());
+            });
+
+            if (selectedIds.length === 0) {
+                alert('Please select at least one record');
+                return;
+            }
+            window.location.href = "{{ route('form.export') }}?ids=" + selectedIds.join(',');
         });
     </script>
 @endsection

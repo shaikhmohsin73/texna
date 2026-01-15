@@ -81,8 +81,6 @@ class ProductionCard extends Model
         'grand_total' => 'decimal:2',
     ];
 
-
-
     public function items()
     {
         return $this->hasMany(ProductionGathiItem::class, 'production_card_id');

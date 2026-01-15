@@ -21,6 +21,9 @@ class ProductionGathiItem extends Model
         'height_b',
         'tar_qty_a',
         'tar_qty_b',
+        'gathi_person',
+        'no',
+        'no_of_gat'
     ];
 
     public function productionCard()

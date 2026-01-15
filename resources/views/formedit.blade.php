@@ -258,7 +258,106 @@
             flex: 1;
         }
     </style>
+    <style>
+        .dori-row-container {
+            display: flex;
+            border: 2.5px solid #000;
+            background: #fff;
+            margin-bottom: 10px;
+            min-height: 70px;
+        }
 
+        .dori-row-item {
+            flex: 1;
+            border-right: 2px solid #000;
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dori-row-item:last-child {
+            border-right: none;
+        }
+
+        .dori-row-item label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            color: #000;
+        }
+
+        .dori-row-item select,
+        .dori-row-item input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            font-weight: 700;
+            background: transparent;
+            width: 100%;
+            border-bottom: 1px dashed #ccc;
+        }
+    </style>
+
+    <style>
+        .right-team {
+            border: 1px solid #000;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .grid-header {
+            background: #f2f2f2;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .header-cell {
+            padding: 10px;
+        }
+
+        .team-box {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .team-box label {
+            font-size: 12px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .team-box input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .single-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .single-input label {
+            width: 200px;
+        }
+
+        .section-grid h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 10px;
+        }
+    </style>
     <form action="{{ route('production-cards.update', $data->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -477,23 +576,40 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="right-team">
                     <div class="grid-header">
-                        <div style="flex:1; padding:10px; border-left:1px solid #000;">PERSONNEL / TEAM</div>
+                        <div class="header-cell">
+                            PERSONNEL / TEAM
+                        </div>
                     </div>
-                    <div class="team-box">
+                    <div class="team-box single-input">
                         <label>JALA BHARAI TEAM</label>
                         <input type="text" name="jala_bharai_team" value="{{ $data->jala_bharai_team }}">
                     </div>
-                    <div class="team-box">
+                    <div class="team-box single-input">
                         <label>G/B BUTTON TEAM</label>
                         <input type="text" name="g_button_team" value="{{ $data->g_button_team }}">
                     </div>
-                    <div class="team-box">
-                        <label>GATHI PERSON | NO OF GAT</label>
-                        <input type="text" name="gathi_person" value="{{ $data->gathi_person }}">
-                    </div>
+                    @for ($i = 0; $i < 3; $i++)
+                        @php $item = $data->items->get($i); @endphp
+                        <div class="team-box section-grid">
+                            <div class="row">
+                                <div>
+                                    <label>GATHI PERSON</label>
+                                    <input type="text" name="gathi_items[{{ $i }}][gathi_person]"
+                                        value="{{ $item->gathi_person }}">
+                                </div>
+                                <div>
+                                    <label>NO</label>
+                                    <input type="number" name="gathi_items[0][no]" value="{{ $item->no }}">
+                                </div>
+                                <div>
+                                    <label>NO OF GAT</label>
+                                    <input type="number" name="gathi_items[0][no_of_gat]" value="{{ $item->no_of_gat }}">
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
                 </div>
             </div>
 

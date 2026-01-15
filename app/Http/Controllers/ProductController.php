@@ -122,7 +122,7 @@ class ProductController extends Controller
             'checklist' => 'nullable|array',
 
             // Grand Total
-            'grand_total' => 'nullable|numeric',    
+            'grand_total' => 'nullable|numeric',
 
             // Gathi Items
             'gathi_items' => 'nullable|array',
@@ -132,6 +132,9 @@ class ProductController extends Controller
             'gathi_items.*.height_b' => 'nullable|string|max:255',
             'gathi_items.*.tar_qty_a' => 'nullable|string|max:255',
             'gathi_items.*.tar_qty_b' => 'nullable|string|max:255',
+            'gathi_items.*.gathi_person' => 'nullable|string|max:255',
+            'gathi_items.*.no' => 'nullable|string|max:255',
+            'gathi_items.*.no_of_gat' => 'nullable|string|max:255',
         ]);
         DB::beginTransaction();
         try {

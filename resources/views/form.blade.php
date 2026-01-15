@@ -963,54 +963,54 @@
                             <div class="row">
                                 <div>
                                     <label>GATHI PERSON</label>
-                                    <input type="text" name="gathi_person_[0]">
+                                    <input type="text" name="gathi_items[0][gathi_person]">
                                 </div>
                                 <div>
                                     <label>NO</label>
-                                    <input type="number" name="no_[0]">
+                                    <input type="number" name="gathi_items[0][no]">
                                 </div>
                                 <div>
                                     <label>NO OF GAT</label>
-                                    <input type="number" name="no_of_gat_[0]">
+                                    <input type="number" name="gathi_items[0][no_of_gat]">
                                 </div>
                             </div>
                         </div>
                         <div class="team-box section-grid">
                             <div class="row">
                                 <div>
-                                    <input type="text" name="gathi_person_[1]">
+                                    <input type="text" name="gathi_items[1][gathi_person]">
                                 </div>
                                 <div>
-                                    <input type="number" name="no_[1]">
+                                    <input type="number" name="gathi_items[1][no]">
                                 </div>
                                 <div>
-                                    <input type="number" name="no_of_gat_[1]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-box section-grid">
-                            <div class="row">
-                                <div>
-                                    <input type="text" name="gathi_person_[2]">
-                                </div>
-                                <div>
-                                    <input type="number" name="no_[2]">
-                                </div>
-                                <div>
-                                    <input type="number" name="no_of_gat_[2]">
+                                    <input type="number" name="gathi_items[1][no_of_gat]">
                                 </div>
                             </div>
                         </div>
                         <div class="team-box section-grid">
                             <div class="row">
                                 <div>
-                                    <input type="text" name="gathi_person_[3]">
+                                    <input type="text" name="gathi_items[2][gathi_person]">
                                 </div>
                                 <div>
-                                    <input type="number" name="no_[3]">
+                                    <input type="number" name="gathi_items[2][no]">
                                 </div>
                                 <div>
-                                    <input type="number" name="no_of_gat_[3]">
+                                    <input type="number" name="gathi_items[2][no_of_gat]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-box section-grid">
+                            <div class="row">
+                                <div>
+                                    <input type="text" name="gathi_items[3][gathi_person]">
+                                </div>
+                                <div>
+                                    <input type="number" name="gathi_items[3][no]">
+                                </div>
+                                <div>
+                                    <input type="number" name="gathi_items[3][no_of_gat]">
                                 </div>
                             </div>
                         </div>

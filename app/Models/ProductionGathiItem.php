@@ -15,21 +15,18 @@ class ProductionGathiItem extends Model
         'production_card_id',
         'border_tar',
         'to_tar',
-        'gathi_type_a',
-        'gathi_type_b',
+        'gathi_types_a',
+        'gathi_types_b',
         'height_a',
         'height_b',
         'tar_qty_a',
         'tar_qty_b',
-        'gathi_person',
-        'no',
-        'no_of_gat'
     ];
 
     public function productionCard()
     {
         return $this->belongsTo(ProductionCard::class, 'production_card_id');
     }
-    
+
 
 }

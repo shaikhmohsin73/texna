@@ -155,15 +155,19 @@
         $(document).ready(function() {
             fetchForms();
 
-            function fetchForms() {
+            function fetchForms(search = '') {
                 $.ajax({
                     url: "{{ route('form_list.data') }}",
                     type: "GET",
+                    data: {
+                        search: search
+                    },
                     dataType: "json",
                     success: function(response) {
                         let html = '';
-                        let i = 1;
+
                         $.each(response, function(index, item) {
+
                             let statusBadge = '';
                             if (item.status === 'side file') {
                                 statusBadge = `
@@ -181,8 +185,10 @@
                                 <i class="fas fa-check-circle"></i> Complete
                             </span>`;
                             }
+
                             html += `
-                            <tr> <td>
+                        <tr>
+                            <td>
                                 <input type="checkbox" class="rowCheckbox" value="${item.id}">
                             </td>
                             <td>${item.bill_no ?? ''}</td>
@@ -206,16 +212,16 @@
 
                                 <a href="/production-cards/${item.id}/pdf" target="_blank" class="action-pdf" title="PDF">
                                     <i class="fas fa-file-pdf"></i>
-                              <a href="/pattern-file/${item.id}" target="_blank" class="action-pattern" title="Pattern File">
-    <i class="fas fa-th-large"></i>
-</a>
+                                </a>
 
-
-
+                                <a href="/pattern-file/${item.id}" target="_blank" class="action-pattern" title="Pattern File">
+                                    <i class="fas fa-th-large"></i>
+                                </a>
                             </td>
                         </tr>
                     `;
                         });
+
                         $('#tableBody').html(html);
                     },
                     error: function() {
@@ -223,7 +229,7 @@
                     }
                 });
             }
-            
+
             $('#searchInput').on('keyup', function() {
                 let value = $(this).val().toLowerCase();
                 $('#tableBody tr').filter(function() {

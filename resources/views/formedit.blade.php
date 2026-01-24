@@ -590,7 +590,7 @@
                         <label>G/B BUTTON TEAM</label>
                         <input type="text" name="g_button_team" value="{{ $data->g_button_team }}">
                     </div>
-                    @for ($i = 0; $i < 3; $i++)
+                    {{-- @for ($i = 0; $i < 3; $i++)
                         @php $item = $data->items->get($i); @endphp
                         <div class="team-box section-grid">
                             <div class="row">
@@ -609,7 +609,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endfor --}}
                 </div>
             </div>
 

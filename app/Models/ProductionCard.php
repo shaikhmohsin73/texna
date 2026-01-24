@@ -71,6 +71,8 @@ class ProductionCard extends Model
         'kg_1',
         'kg_2',
         'total_kg',
+        'number_1',
+        'number_2',
     ];
 
     protected $casts = [
@@ -85,4 +87,10 @@ class ProductionCard extends Model
     {
         return $this->hasMany(ProductionGathiItem::class, 'production_card_id');
     }
+
+    public function gathis()
+{
+    return $this->hasMany(Gathi::class);
+}
+
 }

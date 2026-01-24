@@ -393,6 +393,31 @@
             border-bottom: 1px dashed #ccc;
         }
     </style>
+    <style>
+        .right-align {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .out-input {
+            width: 70px;
+            padding: 6px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #000;
+            border: 2px solid #000;
+        }
+
+        .out-text {
+            font-size: 18px;
+            font-weight: 900;
+            color: #000;
+            letter-spacing: 1px;
+        }
+    </style>
 
     <style>
         .right-team {
@@ -455,6 +480,11 @@
     <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card" style="max-width: 1100px; margin: auto; padding: 40px; border: 1px solid #e2e8f0;">
+            <div class="out-of-wrapper right-align">
+                <input type="number" class="out-input" placeholder="__" name="number_1">
+                <span class="out-text">OUT OF</span>
+                <input type="number" class="out-input" placeholder="__" name="number_2">
+            </div>
             <div class="bill-box">
                 <div class="form-row">
                     <div class="f-box flex-3">
@@ -697,18 +727,18 @@
                                 <input type="text" value="BORDER" readonly id="border_val">
                             </div>
                             <div class="cell w-tar">
-                                <input type="text" id="tar_1" name="gathi_items[0][border_tar]">
+                                <input type="text" id="tar_1" name="production_gathi_items[0][border_tar]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][to_tar]">
                             </div>
-                            <div class="cell w-math" style="padding:0;">
+                            {{-- <div class="cell w-math" style="padding:0;">
                                 <div class="math-box">
                                     <div class="math-line">
-                                        <input type="text" id="gathi_a_1" name="gathi_items[0][gathi_types_a]">
+                                        <input type="text" id="gathi_a_1" name="production_gathi_items[0][gathi_types_a]">
                                     </div>
                                     <div class="math-line">
-                                        <input type="text" id="gathi_b_2" name="gathi_items[0][gathi_types_b]">
+                                        <input type="text" id="gathi_b_2" name="production_gathi_items[0][gathi_types_b]">
                                     </div>
                                 </div>
                             </div>
@@ -716,11 +746,11 @@
                                 <div class="math-box">
                                     <div class="math-line">
                                         <span class="symbol">*</span>
-                                        <input type="text" id="mul1_a_1" name="gathi_items[0][gathi_types_a]">
+                                        <input type="text" id="mul1_a_1" name="production_gathi_items[0][height_a]">
                                     </div>
                                     <div class="math-line">
                                         <span class="symbol">*</span>
-                                        <input type="text" id="mul1_b_1" name="gathi_items[0][gathi_types_b]">
+                                        <input type="text" id="mul1_b_1" name="production_gathi_items[0][height_b]">
                                     </div>
                                 </div>
                             </div>
@@ -728,66 +758,68 @@
                                 <div class="math-box">
                                     <div class="math-line">
                                         <span class="symbol">=</span>
-                                        <input type="text" id="eq1_a_1" name="gathi_items[0][tar_qty_a]">
+                                        <input type="text" id="eq1_a_1" name="production_gathi_items[0][tar_qty_a]">
                                     </div>
                                     <div class="math-line">
                                         <span class="symbol">=</span>
-                                        <input type="text" id="eq1_b_1" name="gathi_items[0][tar_qty_b]">
+                                        <input type="text" id="eq1_b_1" name="production_gathi_items[0][tar_qty_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][to_tar]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
-                            </div>
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][to_tar]">
+                            </div> --}}
                         </div>
                         <div class="grid-row">
                             <div class="cell w-gathi">
                                 <input type="text" value="Gathi 1" readonly>
                             </div>
                             <div class="cell w-tar">
-                                <input type="text" id="tar_2" name="gathi_items[1][border_tar]">
+                                <input type="text" id="tar_2" name="production_gathi_items[1][border_tar]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_2" name="gathi_items[1][to_tar]">
+                                <input type="text" id="totalTar_2" name="production_gathi_items[1][to_tar]">
                             </div>
                             <div class="cell w-math" style="padding:0;">
                                 <div class="math-box">
                                     <div class="math-line">
-                                        <input type="text" id="gathi_a_1_2" name="gathi_items[1][gathi_types_a]">
+                                        <input type="text" id="gathi_a_1_2"
+                                            name="production_gathi_items[1][gathi_types_a]">
                                     </div>
                                     <div class="math-line">
-                                        <input type="text" id="gathi_b_1_2" name="gathi_items[1][gathi_types_b]">
+                                        <input type="text" id="gathi_b_1_2"
+                                            name="production_gathi_items[1][gathi_types_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-math" style="padding:0;">
                                 <div class="math-box">
                                     <div class="math-line"><span class="symbol">*</span>
-                                        <input type="text" id="mul1_a_1_2" name="gathi_items[1][gathi_types_a]">
+                                        <input type="text" id="mul1_a_1_2" name="production_gathi_items[1][height_a]">
                                     </div>
                                     <div class="math-line"><span class="symbol">*</span>
-                                        <input type="text" id="mul1_b_1_2" name="gathi_items[1][gathi_types_b]">
+                                        <input type="text" id="mul1_b_1_2" name="production_gathi_items[1][height_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-math" style="padding:0; border-right:none;">
                                 <div class="math-box">
                                     <div class="math-line"><span class="symbol">=</span>
-                                        <input type="text" id="eq1_a_2" name="gathi_items[1][tar_qty_a]">
+                                        <input type="text" id="eq1_a_2" name="production_gathi_items[1][tar_qty_a]">
                                     </div>
                                     <div class="math-line"><span class="symbol">=</span>
-                                        <input type="text" id="eq1_b_2" name="gathi_items[1][tar_qty_b]">
+                                        <input type="text" id="eq1_b_2" name="production_gathi_items[1][tar_qty_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][tar_qty_a]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][tar_qty_b]">
                             </div>
                         </div>
                         <div class="grid-row">
@@ -795,18 +827,20 @@
                                 <input type="text" value="Gathi 2" readonly>
                             </div>
                             <div class="cell w-tar">
-                                <input type="text" id="tar_3" name="gathi_items[2][border_tar]">
+                                <input type="text" id="tar_3" name="production_gathi_items[2][border_tar]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_3" name="gathi_items[2][to_tar]">
+                                <input type="text" id="totalTar_3" name="production_gathi_items[2][to_tar]">
                             </div>
                             <div class="cell w-math" style="padding:0;">
                                 <div class="math-box">
                                     <div class="math-line">
-                                        <input type="text" id="gathi_a_1_3" name="gathi_items[2][gathi_types_a]">
+                                        <input type="text" id="gathi_a_1_3"
+                                            name="production_gathi_items[2][gathi_types_a]">
                                     </div>
                                     <div class="math-line">
-                                        <input type="text" id="gathi_b_1_3" name="gathi_items[2][gathi_types_b]">
+                                        <input type="text" id="gathi_b_1_3"
+                                            name="production_gathi_items[2][gathi_types_b]">
                                     </div>
                                 </div>
                             </div>
@@ -814,29 +848,29 @@
                                 <div class="math-box">
                                     <div class="math-line">
                                         <span class="symbol">*</span>
-                                        <input type="text" id="mul1_a_3_3" name="gathi_items[2][gathi_types_a]">
+                                        <input type="text" id="mul1_a_3_3" name="production_gathi_items[2][height_a]">
                                     </div>
                                     <div class="math-line">
                                         <span class="symbol">*</span>
-                                        <input type="text" id="mul1_b_3_3" name="gathi_items[2][gathi_types_b]">
+                                        <input type="text" id="mul1_b_3_3" name="production_gathi_items[2][height_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-math" style="padding:0; border-right:none;">
                                 <div class="math-box">
                                     <div class="math-line"><span class="symbol">=</span>
-                                        <input type="text" id="eq1_a_3" name="gathi_items[2][tar_qty_a]">
+                                        <input type="text" id="eq1_a_3" name="production_gathi_items[2][tar_qty_a]">
                                     </div>
                                     <div class="math-line"><span class="symbol">=</span>
-                                        <input type="text" id="eq1_b_3" name="gathi_items[2][tar_qty_b]">
+                                        <input type="text" id="eq1_b_3" name="production_gathi_items[2][tar_qty_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][tar_qty_a]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][tar_qty_b]">
                             </div>
                         </div>
                         <div class="grid-row">
@@ -844,46 +878,48 @@
                                 <input type="text" value="Gathi 3" readonly>
                             </div>
                             <div class="cell w-tar">
-                                <input type="text" id="tar_4" name="gathi_items[3][border_tar]">
+                                <input type="text" id="tar_4" name="production_gathi_items[3][border_tar]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_4" name="gathi_items[3][to_tar]">
+                                <input type="text" id="totalTar_4" name="production_gathi_items[3][to_tar]">
                             </div>
                             <div class="cell w-math" style="padding:0;">
                                 <div class="math-box">
                                     <div class="math-line">
-                                        <input type="text" id="gathi_a_1_4" name="gathi_items[3][gathi_types_a]">
+                                        <input type="text" id="gathi_a_1_4"
+                                            name="production_gathi_items[3][gathi_types_a]">
                                     </div>
                                     <div class="math-line">
-                                        <input type="text" id="gathi_b_1_4" name="gathi_items[3][gathi_types_b]">
+                                        <input type="text" id="gathi_b_1_4"
+                                            name="production_gathi_items[3][gathi_types_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-math" style="padding:0;">
                                 <div class="math-box">
                                     <div class="math-line"><span class="symbol">*</span>
-                                        <input type="text" id="mul1_a_4_4" name="gathi_items[3][gathi_types_a]">
+                                        <input type="text" id="mul1_a_4_4" name="production_gathi_items[3][height_a]">
                                     </div>
                                     <div class="math-line"><span class="symbol">*</span>
-                                        <input type="text" id="mul1_b_4_4" name="gathi_items[3][gathi_types_b]">
+                                        <input type="text" id="mul1_b_4_4" name="production_gathi_items[3][height_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-math" style="padding:0; border-right:none;">
                                 <div class="math-box">
                                     <div class="math-line"><span class="symbol">=</span>
-                                        <input type="text" id="eq1_a_4" name="gathi_items[3][tar_qty_a]">
+                                        <input type="text" id="eq1_a_4" name="production_gathi_items[3][tar_qty_a]">
                                     </div>
                                     <div class="math-line"><span class="symbol">=</span>
-                                        <input type="text" id="eq1_b_4" name="gathi_items[3][tar_qty_b]">
+                                        <input type="text" id="eq1_b_4" name="production_gathi_items[3][tar_qty_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][tar_qty_a]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][tar_qty_b]">
                             </div>
                         </div>
                         <div class="grid-row">
@@ -891,18 +927,20 @@
                                 <input type="text" value="Gathi 4" readonly>
                             </div>
                             <div class="cell w-tar">
-                                <input type="text" id="tar_5" name="gathi_items[4][border_tar]">
+                                <input type="text" id="tar_5" name="production_gathi_items[4][border_tar]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_5" name="gathi_items[4][to_tar]">
+                                <input type="text" id="totalTar_5" name="production_gathi_items[4][to_tar]">
                             </div>
                             <div class="cell w-math" style="padding:0;">
                                 <div class="math-box">
                                     <div class="math-line">
-                                        <input type="text" id="gathi_a_1_5" name="gathi_items[4][gathi_types_a]">
+                                        <input type="text" id="gathi_a_1_5"
+                                            name="production_gathi_items[4][gathi_types_a]">
                                     </div>
                                     <div class="math-line">
-                                        <input type="text" id="gathi_b_1_5" name="gathi_items[4][gathi_types_b]">
+                                        <input type="text" id="gathi_b_1_5"
+                                            name="production_gathi_items[4][gathi_types_b]">
                                     </div>
                                 </div>
                             </div>
@@ -910,31 +948,32 @@
                                 <div class="math-box">
                                     <div class="math-line">
                                         <span class="symbol">*</span>
-                                        <input type="text" id="mul1_a_5_5" name="gathi_items[4][gathi_types_a]">
+                                        <input type="text" id="mul1_a_5_5" name="production_gathi_items[4][height_a]">
                                     </div>
                                     <div class="math-line">
                                         <span class="symbol">*</span>
-                                        <input type="text" id="mul1_b_5_5" name="gathi_items[4][gathi_types_b]">
+                                        <input type="text" id="mul1_b_5_5" name="production_gathi_items[4][height_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-math" style="padding:0; border-right:none;">
                                 <div class="math-box">
                                     <div class="math-line"><span class="symbol">=</span>
-                                        <input type="text" id="eq1_a_5" name="gathi_items[4][tar_qty_a]">
+                                        <input type="text" id="eq1_a_5" name="production_gathi_items[4][tar_qty_a]">
                                     </div>
                                     <div class="math-line"><span class="symbol">=</span>
-                                        <input type="text" id="eq1_b_5" name="gathi_items[4][tar_qty_b]">
+                                        <input type="text" id="eq1_b_5" name="production_gathi_items[4][tar_qty_b]">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][tar_qty_a]">
                             </div>
                             <div class="cell w-total-tar">
-                                <input type="text" id="totalTar_1" name="gathi_items[0][to_tar]">
+                                <input type="text" id="totalTar_1" name="production_gathi_items[0][tar_qty_b]">
                             </div>
                         </div>
+
                         <div class="grid-row" style="height: 40px; background: #f8fafc;">
                             <div style="flex: 4.2; text-align: right; padding: 10px; font-weight: 800;">
                                 TOTAL
@@ -1206,7 +1245,7 @@
         }
 
         function calculateAndLogColor() {
-            // first grid 
+            // first grid
             let b_tar1 = parseFloat(document.getElementById('tar_1').value);
             let t_bar1 = parseFloat(document.getElementById('totalTar_1').value);
             let gathi_a1 = parseFloat(document.getElementById('gathi_a_1').value);
@@ -1230,7 +1269,7 @@
             let gathi_a_1_4 = parseFloat(document.getElementById('gathi_a_1_4').value);
             let gathi_b_1_4 = parseFloat(document.getElementById('gathi_b_1_4').value);
 
-            // five grid 
+            // five grid
             let tar_5 = parseFloat(document.getElementById('tar_5').value);
             let totalTar_5 = parseFloat(document.getElementById('totalTar_5').value);
             let gathi_a_1_5 = parseFloat(document.getElementById('gathi_a_1_5').value);
@@ -1319,12 +1358,3 @@
         };
     </script>
 @endsection
-{{-- ALTER TABLE production_cards
-ADD dori_type_dropdown ENUM('jaadi','patli'),
-ADD meter DECIMAL(10,2),
-ADD br_tar DECIMAL(10,2),
-ADD new_tar DECIMAL(10,2),
-ADD total_tar_new DECIMAL(10,2),
-ADD kg_1 DECIMAL(10,2),
-ADD kg_2 DECIMAL(10,2),
-ADD total_kg DECIMAL(10,2); --}}

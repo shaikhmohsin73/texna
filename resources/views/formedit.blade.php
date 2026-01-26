@@ -674,7 +674,6 @@
     </form>
 
     <script>
-        // Dori Logic
         const doriDropdown = document.getElementById('dori_type_dropdown');
         const brTarInput = document.getElementById('meter');
         doriDropdown.addEventListener('change', function() {
@@ -686,8 +685,6 @@
                 brTarInput.value = '';
             }
         });
-
-        // Calculation Logic (Exactly like form.blade)
         document.addEventListener('input', function(e) {
             const tar1 = parseFloat(document.getElementById('tar_1')?.value) || 0;
             const totalTar1 = parseFloat(document.getElementById('totalTar_1')?.value) || 0;
@@ -717,17 +714,13 @@
         document.getElementById('calculateBtn').addEventListener('click', function() {
             const elTar = document.getElementById('total_tar_new');
             const elMeter = document.getElementById('meter');
-            // Using IDs from the first dynamic row as example
             const valTotalTar = parseFloat(elTar.value) || 0;
             const valMeter = parseFloat(elMeter.value) || 0;
-
             const divider = 39.37;
             const factor1 = 0.33;
             const factor2 = 0.66;
-
             let a_final = ((valTotalTar / divider) * factor1) / valMeter;
             let b_final = ((valTotalTar / divider) * factor2) / valMeter;
-
             document.getElementById('kg_1').value = a_final.toFixed(2);
             document.getElementById('kg_2').value = b_final.toFixed(2);
             document.getElementById('total_kg').value = (a_final + b_final).toFixed(2);

@@ -134,8 +134,7 @@
             outline: none;
             font-weight: 600;
         }
-    </style>
-    <style>
+
         .prod-grid {
             display: flex;
             border: 1.5px solid #000;
@@ -263,8 +262,7 @@
         .w-math {
             flex: 1;
         }
-    </style>
-    <style>
+
         .bottom-section {
             display: flex;
             border: 1.5px solid #000;
@@ -344,15 +342,13 @@
             accent-color: #4361ee;
             cursor: pointer;
         }
-    </style>
-    <style>
+
         .bill-box {
             border: 2.5px solid #000;
             padding: 14px;
             margin-bottom: 15px;
         }
-    </style>
-    <style>
+
         .dori-row-container {
             display: flex;
             border: 2.5px solid #000;
@@ -392,8 +388,7 @@
             width: 100%;
             border-bottom: 1px dashed #ccc;
         }
-    </style>
-    <style>
+
         .right-align {
             display: flex;
             justify-content: flex-end;
@@ -417,9 +412,7 @@
             color: #000;
             letter-spacing: 1px;
         }
-    </style>
 
-    <style>
         .right-team {
             border: 1px solid #000;
             padding: 10px;
@@ -1209,30 +1202,20 @@
     </script>
     <script>
         document.addEventListener('input', function(e) {
-
-            /* ===== 1️⃣ BR TAR = tar_1 × totalTar_1 ===== */
             const tar1 = parseFloat(document.getElementById('tar_1')?.value) || 0;
             const totalTar1 = parseFloat(document.getElementById('totalTar_1')?.value) || 0;
             const brTarInput = document.getElementById('br_tar');
 
             const brTarValue = tar1 * totalTar1;
             if (brTarInput) brTarInput.value = brTarValue;
-
-
-            /* ===== 2️⃣ TAR TOTAL = (tar_2..5 × totalTar_2..5) ===== */
             let tarTotal = 0;
-
             for (let i = 2; i <= 5; i++) {
                 const tar = parseFloat(document.getElementById('tar_' + i)?.value) || 0;
                 const totalTar = parseFloat(document.getElementById('totalTar_' + i)?.value) || 0;
                 tarTotal += tar * totalTar;
             }
-
             const newTarInput = document.getElementById('new_tar');
             if (newTarInput) newTarInput.value = tarTotal;
-
-
-            /* ===== 3️⃣ FINAL TOTAL = BR TAR × TAR ===== */
             const totalTarNewInput = document.getElementById('total_tar_new');
             if (totalTarNewInput) {
                 totalTarNewInput.value = brTarValue + tarTotal;
@@ -1245,31 +1228,22 @@
         }
 
         function calculateAndLogColor() {
-            // first grid
             let b_tar1 = parseFloat(document.getElementById('tar_1').value);
             let t_bar1 = parseFloat(document.getElementById('totalTar_1').value);
             let gathi_a1 = parseFloat(document.getElementById('gathi_a_1').value);
             let gathi_b1 = parseFloat(document.getElementById('gathi_b_2').value);
-
-            // second grid
             let tar_2 = parseFloat(document.getElementById('tar_2').value);
             let totalTar_2 = parseFloat(document.getElementById('totalTar_2').value);
             let gathi_a_1_2 = parseFloat(document.getElementById('gathi_a_1_2').value);
             let gathi_b_1_2 = parseFloat(document.getElementById('gathi_b_1_2').value);
-
-            // three grid
             let tar_3 = parseFloat(document.getElementById('tar_3').value);
             let totalTar_3 = parseFloat(document.getElementById('totalTar_3').value);
             let gathi_a_1_3 = parseFloat(document.getElementById('gathi_a_1_3').value);
             let gathi_b_1_3 = parseFloat(document.getElementById('gathi_b_1_3').value);
-
-            // four grid
             let tar_4 = parseFloat(document.getElementById('tar_4').value);
             let totalTar_4 = parseFloat(document.getElementById('totalTar_4').value);
             let gathi_a_1_4 = parseFloat(document.getElementById('gathi_a_1_4').value);
             let gathi_b_1_4 = parseFloat(document.getElementById('gathi_b_1_4').value);
-
-            // five grid
             let tar_5 = parseFloat(document.getElementById('tar_5').value);
             let totalTar_5 = parseFloat(document.getElementById('totalTar_5').value);
             let gathi_a_1_5 = parseFloat(document.getElementById('gathi_a_1_5').value);

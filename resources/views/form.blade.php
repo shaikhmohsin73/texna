@@ -1174,8 +1174,7 @@
                 link.classList.add('active');
             }
         });
-    </script>
-    <script>
+
         function calculateTotalToPCS() {
             let total = 0;
             document.querySelectorAll('.grid-row').forEach(row => {
@@ -1185,7 +1184,6 @@
                 const toTar = parseFloat(totalTarInput?.value) || 0;
                 total += borderTar * toTar;
             });
-            // const br_tarInput = document.getElementById('br_tar');
             const pcsInput = document.getElementById('t_tar');
             if (pcsInput) {
                 pcsInput.value = total.toFixed(2);
@@ -1199,8 +1197,6 @@
                 calculateTotalToPCS();
             }
         });
-    </script>
-    <script>
         document.addEventListener('input', function(e) {
             const tar1 = parseFloat(document.getElementById('tar_1')?.value) || 0;
             const totalTar1 = parseFloat(document.getElementById('totalTar_1')?.value) || 0;
@@ -1260,8 +1256,6 @@
             console.log("Result for Gathi A1: " + calculateColor(tar_5, totalTar_5, gathi_a_1_5));
             console.log("Result for Gathi B1: " + calculateColor(tar_5, totalTar_5, gathi_b_1_5));
         }
-    </script>
-    <script>
         window.onload = function() {
             const btn = document.getElementById('calculateBtn');
             if (btn) {

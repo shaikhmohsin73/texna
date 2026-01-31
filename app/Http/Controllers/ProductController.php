@@ -183,7 +183,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $data = ProductionCard::with('items')->findOrFail($id);
+       $data = ProductionCard::with(['items', 'gathis'])->findOrFail($id);
 
         return view('formedit', compact('data'));
     }

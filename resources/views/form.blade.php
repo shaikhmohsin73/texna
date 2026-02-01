@@ -723,6 +723,7 @@
                                 <input type="text" id="tar_1" name="production_gathi_items[0][border_tar]">
                             </div>
                             <div class="cell w-total-tar">
+
                                 <input type="text" id="totalTar_1" name="production_gathi_items[0][to_tar]">
                             </div>
                             {{-- <div class="cell w-math" style="padding:0;">

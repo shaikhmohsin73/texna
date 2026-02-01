@@ -17,6 +17,8 @@ class Gathi extends Model
         'no',
         'no_of_gat',
     ];
+
+    
     public function productionCard()
     {
         return $this->belongsTo(ProductionCard::class);

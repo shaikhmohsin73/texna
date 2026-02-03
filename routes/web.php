@@ -6,7 +6,7 @@ use App\Http\Controllers\PartyImportController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarketingController;
-
+use App\Http\Controllers\ProfileController;
 
 Route::middleware('guest:admin')->group(function () {
     Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -50,4 +50,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/marketing/{id}/edit', [MarketingController::class, 'edit'])->name('marketing.edit');
     Route::put('/marketing/{id}', [MarketingController::class, 'update'])->name('marketing.update');
     Route::delete('/marketing/{id}', [MarketingController::class, 'destroy'])->name('marketing.destroy');
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 });

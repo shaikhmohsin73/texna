@@ -500,7 +500,7 @@
                     @endif
                     <div class="f-box">
                         <label for="orDate">OR. Date</label>
-                        <input type="date" id="or_date" name="or_date" value="{{ old('or_date', $data->or_date) }}">
+                        <input type="date" id="or_date" name="or_date" value="{{ old('or_date', optional($data->or_date)->format('Y-m-d')) }}">
                     </div>
                 </div>
                 <div class="form-row">
@@ -536,7 +536,7 @@
                     <div class="f-box">
                         <label for="delDate">Del. Date</label>
                         <input type="date" id="del_date" name="del_date"
-                            value="{{ old('del_date', $data->del_date) }}">
+                            value="{{ old('del_date', optional($data->del_date)->format('Y-m-d')) }}">
                     </div>
                 </div>
             </div>

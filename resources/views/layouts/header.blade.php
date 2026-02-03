@@ -192,6 +192,9 @@
                 <a href="/marketing">
                     <i class="fa-solid fa-bullhorn"></i> Marketing
                 </a>
+                <a href="/profile">
+                    <i class="fa-solid fa-right-from-bracket"></i> Profile
+                </a>
 
                 <a href="/logout">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout

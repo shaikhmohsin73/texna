@@ -12,6 +12,7 @@ class ProductionCard extends Model
     protected $table = 'production_cards';
 
     protected $fillable = [
+        'auth_create',
         'firm_name',
         'or_date',
         'own_name',

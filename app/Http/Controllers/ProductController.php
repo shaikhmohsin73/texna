@@ -428,8 +428,10 @@ class ProductController extends Controller
             'production_gathi_items.*.tar_qty_b' => 'nullable|string|max:255',
         ]);
         DB::beginTransaction();
+        
         try {
             $projectData = $validatedData;
+            $projectData['auth_create'] = auth()->user()->name;
             unset($projectData['gathi_items'], $projectData['production_gathi_items']);
             if ($request->hasFile('pattern_File')) {
                 $file = $request->file('pattern_File');

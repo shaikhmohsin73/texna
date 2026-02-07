@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,7 @@ class ProfileController extends Controller
                 'password.confirmed' => 'New password and confirm password do not match.',
             ]
         );
-        $user = Auth::user();
+        $user = Admin::find(Auth::id());
         if (!Hash::check($request->old_password, $user->password)) {
             return back()->withErrors([
                 'old_password' => 'The current password you entered is incorrect.'

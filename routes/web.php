@@ -6,6 +6,7 @@ use App\Http\Controllers\PartyImportController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarketingController;
+use App\Http\Controllers\PatternController;
 use App\Http\Controllers\ProfileController;
 
 Route::middleware('guest:admin')->group(function () {
@@ -31,7 +32,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/party/edit/{id}', [PartyImportController::class, 'edit']);
     Route::put('/party/update/{id}', [PartyImportController::class, 'update'])->name('party.update');
     Route::delete('/party/delete/{id}', [PartyImportController::class, 'destroy']);
-    // form controller 
+    // form controller  
     Route::get('form_list', [ProductController::class, 'form'])->name('form_list');
     Route::get('form_list/data', [ProductController::class, 'formData'])->name('form_list.data');
     Route::get('form_create', [ProductController::class, 'form_create'])->name('form_create');
@@ -53,4 +54,12 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+
+
+    Route::get('/patterns', [PatternController::class, 'index']);
+    Route::get('/patterns/create', [PatternController::class, 'create'])->name('patterns.create');
+    Route::post('/patterns', [PatternController::class, 'store']);
+    Route::get('/patterns/{id}/edit', [PatternController::class, 'edit'])->name('patterns.edit');
+    Route::post('/patterns/{id}/update', [PatternController::class, 'update']);
+    Route::get('/patterns/{id}/delete', [PatternController::class, 'destroy'])->name('patterns.delete');
 });

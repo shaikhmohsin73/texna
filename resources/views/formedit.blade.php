@@ -1105,7 +1105,6 @@
 
                         @php
                             $gathis = $data->gathis;
-                            // Ensure we have at least 4 gathis
                             while (count($gathis) < 4) {
                                 $gathis[] = new \App\Models\Gathi();
                             }

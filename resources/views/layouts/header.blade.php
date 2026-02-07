@@ -188,6 +188,9 @@
                 <a href="/party_name">
                     <i class="fa-solid fa-user-tie"></i> Party Name
                 </a>
+                 <a href="/patterns">
+                    <i class="fa-solid fa-bullhorn"></i> Patterns
+                </a>
 
                 <a href="/marketing">
                     <i class="fa-solid fa-bullhorn"></i> Marketing
@@ -205,7 +208,10 @@
         <div class="main">
             <header>
                 <h3>Dashboard</h3>
-                <div style="color: var(--primary); font-weight: 600;">Admin Account</div>
+                <div style="color: var(--primary); font-weight: 600;">
+                    {{ Auth::user()->name }}
+                </div>
+
             </header>
             @yield('content')
         </div>
